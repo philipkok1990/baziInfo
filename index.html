@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>八字命理完全学习手册</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{
+  --bg:#fcfaf6;--card:#ffffff;--text:#1a1a2e;--muted:#6b7280;
+  --accent:#b45309;--accent-soft:rgba(180,83,9,.12);
+  --accent2:#2d6b8a;--accent2-soft:rgba(45,107,138,.12);
+  --border:rgba(26,26,46,.1);
+  --wood:#2d7a3e;--fire:#c0392b;--earth:#b8860b;--metal:#6b7a90;--water:#2980b9;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:'Noto Sans SC',sans-serif;color:var(--text);line-height:1.6}
+.tab-btn{transition:all .25s;cursor:pointer}
+.tab-btn.active{color:var(--accent);border-bottom:3px solid var(--accent);background:var(--accent-soft);font-weight:700}
+.acc-content{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.acc-item.open .acc-content{max-height:8000px}
+.acc-item.open .acc-arrow{transform:rotate(180deg)}
+.acc-arrow{transition:transform .3s;display:inline-block}
+.wx-wood{color:var(--wood)}.wx-fire{color:var(--fire)}.wx-earth{color:var(--earth)}.wx-metal{color:var(--metal)}.wx-water{color:var(--water)}
+.god-card{transition:transform .25s,box-shadow .25s}
+.god-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(180,83,9,.15)}
+.stem-btn{transition:all .2s;cursor:pointer}
+.stem-btn.active{transform:scale(1.15);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+table{border-collapse:collapse;width:100%}
+th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5}
+th{background:var(--accent-soft);color:var(--accent);font-weight:700;white-space:nowrap}
+tr:hover td{background:rgba(180,83,9,.04)}
+.pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin:1px}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scroll-x::-webkit-scrollbar{height:4px}
+.scroll-x::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.section-panel{display:none}
+.section-panel.active{display:block;animation:fadeIn .4s ease}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav-scroll{scrollbar-width:none}
+.acc-header{cursor:pointer;user-select:none}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div style="padding:44px 20px 28px;text-align:center;border-bottom:1px solid var(--border);background:radial-gradient(800px 400px at 20% -5%,rgba(180,83,9,.10),transparent 60%),radial-gradient(600px 350px at 90% 0%,rgba(45,107,138,.08),transparent 60%)">
+  <div style="font-size:11px;letter-spacing:.35em;color:var(--accent);text-transform:uppercase;margin-bottom:10px;font-weight:600">BAZI · 四柱命理学</div>
+  <h1 style="font-family:'Noto Serif SC',serif;font-size:clamp(26px,5vw,42px);font-weight:900;margin:0 0 10px;line-height:1.2">
+    <span style="background:linear-gradient(100deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent">八字命理完全学习手册</span>
+  </h1>
+  <p style="color:var(--muted);font-size:14px;max-width:640px;margin:0 auto;line-height:1.8">从五行天干地支基础，到十神格局、用神忌神、神煞刑冲，再到事业财富健康家庭房产实战——一页讲透八字的核心逻辑与判断方法</p>
+  <div style="margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+    <span class="pill" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)">7大板块</span>
+    <span class="pill" style="background:var(--accent2-soft);color:var(--accent2);border:1px solid var(--accent2)">交互式十神计算器</span>
+    <span class="pill" style="background:rgba(45,122,62,.1);color:var(--wood);border:1px solid var(--wood)">财富4级判定</span>
+    <span class="pill" style="background:rgba(192,57,43,.08);color:var(--fire);border:1px solid var(--fire)">实战应用指南</span>
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div style="position:sticky;top:0;z-index:50;background:rgba(252,250,246,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--accent)">
+  <div class="nav-scroll" style="display:flex;overflow-x:auto;padding:0 8px">
+    <button class="tab-btn active" data-tab="0" style="padding:13px 15px;font-size:13px;white-space:nowrap;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Noto Serif SC',serif;font-weight:600">① 基础入门</button>
+    <button class="tab-btn" data-tab="1" style="padding:13px 15px;font-size:13px;white-space:nowrap;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Noto Serif SC',serif;font-weight:600">② 十神详解</button>
+    <button class="tab-btn" data-tab="2" style="padding:13px 15px;font-size:13px;white-space:nowrap;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Noto Serif SC',serif;font-weight:600">③ 格局判断</button>
+    <button class="tab-btn" data-tab="3" style="padding:13px 15px;font-size:13px;white-space:nowrap;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Noto Serif SC',serif;font-weight:600">④ 用神忌神</button>
+    <button class="tab-btn" data-tab="4" style="padding:13px 15px;font-size:13px;white-space:nowrap;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Noto Serif SC',serif;font-weight:600">⑤ 神煞大全</button>
+    <button class="tab-btn" data-tab="5" style="padding:13px 15px;font-size:13px;white-space:nowrap;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Noto Serif SC',serif;font-weight:600">⑥ 刑冲会合</button>
+    <button class="tab-btn" data-tab="6" style="padding:13px 15px;font-size:13px;white-space:nowrap;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Noto Serif SC',serif;font-weight:600">⑦ 实战应用</button>
+    <button class="tab-btn" data-tab="7" style="padding:13px 15px;font-size:13px;white-space:nowrap;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Noto Serif SC',serif;font-weight:600">⑧ 智能排盘分析</button>
+  </div>
+</div>
+
+<div style="max-width:1100px;margin:0 auto;padding:24px 16px 40px">
+
+<!-- ============ TAB 0: 基础入门 ============ -->
+<div class="section-panel active" id="panel-0">
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;margin:0 0 6px">基础入门：五行 · 天干 · 地支 · 藏干</h2>
+  <p style="color:var(--muted);font-size:13px;margin:0 0 20px">八字的一切推演都建立在这四个基础概念之上。先理解它们，后面的十神、格局、用神才能水到渠成。</p>
+
+  <!-- 五行 -->
+  <div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">一、五行学说 —— 万物的五种能量形态</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 14px">五行即<strong>木、火、土、金、水</strong>五种基本能量。它们之间存在<strong>相生</strong>（促进）与<strong>相克</strong>（制约）两种关系，构成动态平衡。</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px">
+        <div style="border-left:4px solid var(--wood);background:rgba(45,122,62,.06);padding:12px;border-radius:8px">
+          <div style="font-weight:700;color:var(--wood);font-size:15px">木</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7">春季·东方·肝胆<br>青绿·酸·情志怒<br>生长、升发、条达</div>
+        </div>
+        <div style="border-left:4px solid var(--fire);background:rgba(192,57,43,.06);padding:12px;border-radius:8px">
+          <div style="font-weight:700;color:var(--fire);font-size:15px">火</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7">夏季·南方·心小肠<br>赤红·苦·情志喜<br>温热、向上、光明</div>
+        </div>
+        <div style="border-left:4px solid var(--earth);background:rgba(184,134,11,.08);padding:12px;border-radius:8px">
+          <div style="font-weight:700;color:var(--earth);font-size:15px">土</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7">长夏·中央·脾胃<br>黄色·甘·情志思<br>承载、生化、收纳</div>
+        </div>
+        <div style="border-left:4px solid var(--metal);background:rgba(107,122,144,.1);padding:12px;border-radius:8px">
+          <div style="font-weight:700;color:var(--metal);font-size:15px">金</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7">秋季·西方·肺大肠<br>白色·辛·情志悲<br>肃杀、收敛、变革</div>
+        </div>
+        <div style="border-left:4px solid var(--water);background:rgba(41,128,185,.08);padding:12px;border-radius:8px">
+          <div style="font-weight:700;color:var(--water);font-size:15px">水</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7">冬季·北方·肾膀胱<br>黑色·咸·情志恐<br>寒凉、向下、滋润</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:rgba(45,122,62,.06);border:1px solid rgba(45,122,62,.2);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--wood);margin-bottom:8px;font-size:14px">相生关系（促进）</div>
+          <div style="font-size:13px;line-height:2">木 → 火（燃烧）<br>火 → 土（灰烬）<br>土 → 金（矿藏）<br>金 → 水（凝露）<br>水 → 木（滋养）</div>
+        </div>
+        <div style="background:rgba(192,57,43,.05);border:1px solid rgba(192,57,43,.2);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--fire);margin-bottom:8px;font-size:14px">相克关系（制约）</div>
+          <div style="font-size:13px;line-height:2">木 克 土（根穿土）<br>土 克 水（土挡水）<br>水 克 火（水灭火）<br>火 克 金（火熔金）<br>金 克 木（金伐木）</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent)">核心记忆口诀：</strong>相生 = 木火土金水（顺时针循环）；相克 = 隔一位相克。记住这个循环，十神计算就成功了一半。
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 天干 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">二、十天干 —— 十种能量的"阳面"表达</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 12px">天干共十个：<strong>甲乙丙丁戊己庚辛壬癸</strong>。<strong>甲丙戊庚壬为阳干</strong>，<strong>乙丁己辛癸为阴干</strong>。日干（日主）代表命主本人，是整个八字分析的核心基准点。</p>
+      <div class="scroll-x"><table>
+        <tr><th>天干</th><th>五行</th><th>阴阳</th><th>象征</th><th>性格关键词</th></tr>
+        <tr><td style="font-weight:700;color:var(--wood)">甲</td><td>木</td><td>阳</td><td>参天大树</td><td>正直、领导力、固执、有远见</td></tr>
+        <tr><td style="font-weight:700;color:var(--wood)">乙</td><td>木</td><td>阴</td><td>花草藤蔓</td><td>柔顺、聪慧、灵活、依附性</td></tr>
+        <tr><td style="font-weight:700;color:var(--fire)">丙</td><td>火</td><td>阳</td><td>太阳烈火</td><td>热情、奔放、光明、急躁</td></tr>
+        <tr><td style="font-weight:700;color:var(--fire)">丁</td><td>火</td><td>阴</td><td>烛火灯火</td><td>文雅、内敛、细腻、温暖</td></tr>
+        <tr><td style="font-weight:700;color:var(--earth)">戊</td><td>土</td><td>阳</td><td>高山土壤</td><td>稳重、厚道、包容、固执</td></tr>
+        <tr><td style="font-weight:700;color:var(--earth)">己</td><td>土</td><td>阴</td><td>田园沃土</td><td>谦和、细致、务实、内敛</td></tr>
+        <tr><td style="font-weight:700;color:var(--metal)">庚</td><td>金</td><td>阳</td><td>刀剑钢铁</td><td>果断、刚毅、霸气、好胜</td></tr>
+        <tr><td style="font-weight:700;color:var(--metal)">辛</td><td>金</td><td>阴</td><td>珠宝金饰</td><td>精致、敏锐、完美主义、清高</td></tr>
+        <tr><td style="font-weight:700;color:var(--water)">壬</td><td>水</td><td>阳</td><td>江河大海</td><td>智慧、流动、包容、多变</td></tr>
+        <tr><td style="font-weight:700;color:var(--water)">癸</td><td>水</td><td>阴</td><td>雨露甘泉</td><td>深沉、内敛、敏感、温柔</td></tr>
+      </table></div>
+      <div style="margin-top:12px;background:var(--accent2-soft);border-left:3px solid var(--accent2);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent2)">理解要点：</strong>同样是木，甲木是参天大树（需庚金砍伐成器），乙木是花草（需丙太阳照耀）。<strong>每个日主的用神偏好不同，根源就在这里。</strong>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 地支藏干 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">三、十二地支与藏干 —— 能量的"容器"与"内核"</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 12px">地支共十二个：<strong>子丑寅卯辰巳午未申酉戌亥</strong>。每个地支内部<strong>藏有天干</strong>（藏干/人元），分为<strong>本气</strong>（最强）、<strong>中气</strong>（中等）、<strong>余气</strong>（较弱）。</p>
+      <div class="scroll-x"><table>
+        <tr><th>地支</th><th>生肖</th><th>月份</th><th>时辰</th><th>五行</th><th>藏干（本→中→余）</th></tr>
+        <tr><td style="font-weight:700">子</td><td>鼠</td><td>十一月</td><td>23-1点</td><td class="wx-water">水</td><td>癸</td></tr>
+        <tr><td style="font-weight:700">丑</td><td>牛</td><td>十二月</td><td>1-3点</td><td class="wx-earth">土</td><td>己(本) → 癸(中) → 辛(余)</td></tr>
+        <tr><td style="font-weight:700">寅</td><td>虎</td><td>正月</td><td>3-5点</td><td class="wx-wood">木</td><td>甲(本) → 丙(中) → 戊(余)</td></tr>
+        <tr><td style="font-weight:700">卯</td><td>兔</td><td>二月</td><td>5-7点</td><td class="wx-wood">木</td><td>乙</td></tr>
+        <tr><td style="font-weight:700">辰</td><td>龙</td><td>三月</td><td>7-9点</td><td class="wx-earth">土</td><td>戊(本) → 乙(中) → 癸(余)</td></tr>
+        <tr><td style="font-weight:700">巳</td><td>蛇</td><td>四月</td><td>9-11点</td><td class="wx-fire">火</td><td>丙(本) → 庚(中) → 戊(余)</td></tr>
+        <tr><td style="font-weight:700">午</td><td>马</td><td>五月</td><td>11-13点</td><td class="wx-fire">火</td><td>丁(本) → 己(中)</td></tr>
+        <tr><td style="font-weight:700">未</td><td>羊</td><td>六月</td><td>13-15点</td><td class="wx-earth">土</td><td>己(本) → 丁(中) → 乙(余)</td></tr>
+        <tr><td style="font-weight:700">申</td><td>猴</td><td>七月</td><td>15-17点</td><td class="wx-metal">金</td><td>庚(本) → 壬(中) → 戊(余)</td></tr>
+        <tr><td style="font-weight:700">酉</td><td>鸡</td><td>八月</td><td>17-19点</td><td class="wx-metal">金</td><td>辛</td></tr>
+        <tr><td style="font-weight:700">戌</td><td>狗</td><td>九月</td><td>19-21点</td><td class="wx-earth">土</td><td>戊(本) → 辛(中) → 丁(余)</td></tr>
+        <tr><td style="font-weight:700">亥</td><td>猪</td><td>十月</td><td>21-23点</td><td class="wx-water">水</td><td>壬(本) → 甲(中)</td></tr>
+      </table></div>
+      <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:rgba(45,122,62,.06);padding:12px;border-radius:8px;font-size:12px;line-height:1.8">
+          <strong style="color:var(--wood)">四库（财库/墓库）：</strong><br>辰=水库(藏癸) · 戌=火库(藏丁)<br>丑=金库(藏辛) · 未=木库(藏乙)
+        </div>
+        <div style="background:rgba(180,83,9,.08);padding:12px;border-radius:8px;font-size:12px;line-height:1.8">
+          <strong style="color:var(--accent)">藏干为什么重要？</strong><br>① 月令藏干决定格局 ② 天干是否"有根"看藏干<br>③ 中气透出常成关键用神 ④ 藏干十神影响深层性格
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 四柱结构 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">四、四柱结构 —— 八字的"人生地图"框架</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 14px">八字由<strong>年柱、月柱、日柱、时柱</strong>四柱组成，每柱一天干+一地支共八字。每柱代表人生不同阶段和宫位。</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--accent2)">
+          <div style="font-weight:700;font-size:15px;color:var(--accent2)">年柱</div>
+          <div style="font-size:12px;color:var(--muted);margin:6px 0;line-height:1.7">年干+年支<br><strong>宫位：</strong>祖上/父母宫<br><strong>年龄：</strong>0-16岁<br><strong>代表：</strong>祖辈、出身、家族根基、少年运</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--wood)">
+          <div style="font-weight:700;font-size:15px;color:var(--wood)">月柱（提纲）</div>
+          <div style="font-size:12px;color:var(--muted);margin:6px 0;line-height:1.7">月干+月支(月令)<br><strong>宫位：</strong>父母/兄弟/事业宫<br><strong>年龄：</strong>16-32岁<br><strong>代表：</strong>父母、兄弟、事业起点、<strong style="color:var(--accent)">格局之源(最重要)</strong></div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--accent)">
+          <div style="font-weight:700;font-size:15px;color:var(--accent)">日柱（核心）</div>
+          <div style="font-size:12px;color:var(--muted);margin:6px 0;line-height:1.7">日干(日主=自己)+日支<br><strong>宫位：</strong>配偶宫(日支)<br><strong>年龄：</strong>32-48岁<br><strong>代表：</strong>本人、性格、婚姻、配偶</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--water)">
+          <div style="font-weight:700;font-size:15px;color:var(--water)">时柱</div>
+          <div style="font-size:12px;color:var(--muted);margin:6px 0;line-height:1.7">时干+时支<br><strong>宫位：</strong>子女/晚年宫<br><strong>年龄：</strong>48岁以后<br><strong>代表：</strong>子女、晚年运、事业归宿、下属</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent)">关键认知：</strong>月支(月令)是"总司令"决定五行旺衰；日干(日主)是"我"，所有十神以它为基准；日支是配偶宫看婚姻。这三个位置是八字分析的三大支点。
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ TAB 1: 十神详解 ============ -->
+<div class="section-panel" id="panel-1">
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;margin:0 0 6px">十神详解 —— 八字的"人际关系语言"</h2>
+  <p style="color:var(--muted);font-size:13px;margin:0 0 20px">十神是以日主为中心，根据五行生克和阴阳异同推导出的十种关系。性格、事业、财富、婚姻、健康，全都通过十神来解读。</p>
+
+  <!-- 交互式计算器 -->
+  <div style="background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 4px 20px rgba(180,83,9,.1)">
+    <div style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:17px;margin-bottom:4px">交互式十神计算器</div>
+    <p style="font-size:12px;color:var(--muted);margin:0 0 14px">点击选择你的日主（日干），自动计算与其他天干的十神关系</p>
+    <div id="stem-buttons" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;justify-content:center"></div>
+    <div id="god-result" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px"></div>
+    <div id="god-explain" style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.8;background:var(--accent-soft);padding:10px 14px;border-radius:8px"></div>
+  </div>
+
+  <!-- 计算规则 -->
+  <div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">一、十神计算规则（三步推导法）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--wood);margin-bottom:8px">同我者（比劫）—— 兄弟朋友</div>
+          <div style="font-size:13px;line-height:2">同五行+同阴阳 = <strong>比肩</strong>（甲见甲）<br>同五行+异阴阳 = <strong>劫财</strong>（甲见乙）</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--water);margin-bottom:8px">生我者（印星）—— 学识贵人</div>
+          <div style="font-size:13px;line-height:2">生我+异阴阳 = <strong>正印</strong>（甲见癸）<br>生我+同阴阳 = <strong>偏印/枭神</strong>（甲见壬）</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--fire);margin-bottom:8px">我生者（食伤）—— 才华输出</div>
+          <div style="font-size:13px;line-height:2">我生+同阴阳 = <strong>食神</strong>（甲见丙）<br>我生+异阴阳 = <strong>伤官</strong>（甲见丁）</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--metal);margin-bottom:8px">克我者（官杀）—— 权力约束</div>
+          <div style="font-size:13px;line-height:2">克我+异阴阳 = <strong>正官</strong>（甲见辛）<br>克我+同阴阳 = <strong>七杀/偏官</strong>（甲见庚）</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;grid-column:1/-1">
+          <div style="font-weight:700;color:var(--earth);margin-bottom:8px">我克者（财星）—— 财富妻子</div>
+          <div style="font-size:13px;line-height:2">我克+异阴阳 = <strong>正财</strong>（甲见己）—— 稳定收入、男命正妻<br>我克+同阴阳 = <strong>偏财</strong>（甲见戊）—— 意外之财、投资、男命父亲/情人</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;background:var(--accent2-soft);border-left:3px solid var(--accent2);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent2)">记忆口诀：</strong>同我比劫、生我印枭、我生食伤、克我官杀、我克财星。同性为偏（劫/枭/食/杀/偏），异性为正（比/印/伤/官/正）——注意：比肩是"正"，劫财是"偏"，这是唯一例外！
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 十神详解 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">二、十神含义详解（性格·事业·代表人物）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px" id="god-cards"></div>
+    </div></div>
+  </div>
+
+  <!-- 月令十神 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">三、月令如何产生十神？—— 格局的来源</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 12px"><strong>月令（月支）是取格的唯一依据。</strong>看月支中藏的天干（本气、中气、余气），哪个透出到天干（年干、月干、时干），就以那个藏干对应的十神定格局。</p>
+      <div style="background:rgba(45,107,138,.06);border:1px solid rgba(45,107,138,.2);border-radius:10px;padding:14px;margin-bottom:12px">
+        <div style="font-weight:700;color:var(--accent2);font-size:14px;margin-bottom:8px">实例：甲木日主，生于寅月（正月）</div>
+        <div style="font-size:13px;line-height:2">
+          寅月藏干：甲(本气) → 丙(中气) → 戊(余气)<br>
+          · 天干透甲 → 比肩 → 建禄格（月令为禄）<br>
+          · 天干透丙 → 食神 → <strong>食神格</strong><br>
+          · 天干透戊 → 偏财 → <strong>偏财格</strong><br>
+          · 都不透 → 取本气甲 → 建禄格（无格可取，另寻用神）
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.9">
+        <p style="margin:0 0 8px"><strong>取格优先级：</strong>本气透出 &gt; 中气透出 &gt; 余气透出。若月令本气为日主的禄（比肩）或刃（劫财），则为建禄格或月刃格，不以正格论。</p>
+        <p style="margin:0"><strong>不同柱的十神代表什么：</strong>同样是正官，年柱=少年得志/祖上有名望；月柱=事业稳定/适合公职；日柱(日支藏干)=配偶端正/婚姻有约束；时柱=晚年有地位/子女有出息。<strong>十神+柱位=具体的人生事件。</strong></p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 藏干十神 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">四、藏干生成的十神 —— 深层性格与潜在影响</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 12px">地支藏干也要换算成十神。藏干的十神代表<strong>内在的、潜在的、不易察觉的特质</strong>——本气主导，中气影响潜质，余气暗示倾向。</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:rgba(45,122,62,.06);padding:12px;border-radius:8px;font-size:12px;line-height:1.8">
+          <strong style="color:var(--wood)">日支(配偶宫)藏干十神：</strong><br>· 藏正官/正印 → 配偶稳重可靠<br>· 藏七杀/伤官 → 配偶个性强、易冲突<br>· 藏偏财/食神 → 配偶有财、会享受<br>· 藏比劫 → 配偶独立、易有竞争
+        </div>
+        <div style="background:rgba(180,83,9,.08);padding:12px;border-radius:8px;font-size:12px;line-height:1.8">
+          <strong style="color:var(--accent)">月令藏干十神(决定格局)：</strong><br>· 本气透干 → 格局清纯，力量大<br>· 中气透干 → 格局混杂，需辨主次<br>· 不透干 → 力量内藏，待大运引出<br>· 藏干多透 → 格局混杂，层次降低
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:13px;line-height:1.9;background:var(--accent2-soft);border-left:3px solid var(--accent2);padding:10px 14px;border-radius:0 8px 8px 0">
+        <strong style="color:var(--accent2)">实战要点：</strong>一个地支可能同时藏2-3个天干，对应2-3种十神。例如丑土藏己(偏财)、癸(正印)、辛(正官)——一个丑土同时包含财、印、官三种能量，这就是为什么"土"在八字中最复杂（辰戌丑未四库皆如此）。
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ TAB 2: 格局判断 ============ -->
+<div class="section-panel" id="panel-2">
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;margin:0 0 6px">格局判断 —— 你是什么"命格"？</h2>
+  <p style="color:var(--muted);font-size:13px;margin:0 0 20px">格局决定命局的"类型"和"层次"。取格有严格优先级，从特殊格局到普通格局依次排查。约80%的人属于八正格。</p>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px">
+    <div style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px;margin-bottom:12px">取格优先级（从高到低依次排查）</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <span class="pill" style="background:rgba(139,92,246,.1);color:#7c3aed;border:1px solid #7c3aed;font-size:12px;padding:6px 14px">① 化气格(极罕见)</span>
+      <span style="color:var(--muted)">→</span>
+      <span class="pill" style="background:rgba(192,57,43,.08);color:var(--fire);border:1px solid var(--fire);font-size:12px;padding:6px 14px">② 专旺格(罕见)</span>
+      <span style="color:var(--muted)">→</span>
+      <span class="pill" style="background:rgba(41,128,185,.08);color:var(--water);border:1px solid var(--water);font-size:12px;padding:6px 14px">③ 从格(罕见)</span>
+      <span style="color:var(--muted)">→</span>
+      <span class="pill" style="background:rgba(184,134,11,.1);color:var(--earth);border:1px solid var(--earth);font-size:12px;padding:6px 14px">④ 建禄/月刃格</span>
+      <span style="color:var(--muted)">→</span>
+      <span class="pill" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);font-size:12px;padding:6px 14px">⑤ 八正格(最常见)</span>
+    </div>
+  </div>
+
+  <div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">一、八正格详解（80%的人属于这类）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px" id="geju-cards"></div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">二、特殊格局（专旺·从格·化气·建禄月刃）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
+        <div style="border:1px solid rgba(192,57,43,.3);border-radius:10px;padding:14px;background:rgba(192,57,43,.03)">
+          <div style="font-weight:700;color:var(--fire);font-size:14px;margin-bottom:6px">专旺格（一行独旺）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">日主极强，地支会齐同方或合局。曲直格(木)·炎上格(火)·稼穑格(土)·从革格(金)·润下格(水)。<br><strong>用神：</strong>顺其旺势用印比，忌官杀克伐。</div>
+        </div>
+        <div style="border:1px solid rgba(41,128,185,.3);border-radius:10px;padding:14px;background:rgba(41,128,185,.03)">
+          <div style="font-weight:700;color:var(--water);font-size:14px;margin-bottom:6px">从格（日主极弱，弃命相从）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">日主无根无扶，满局皆为某一五行。从财格(大富)·从杀格(大贵)·从儿格(聪明才艺)·从势格。<br><strong>用神：</strong>从神即用神，忌生扶日主。</div>
+        </div>
+        <div style="border:1px solid rgba(139,92,246,.3);border-radius:10px;padding:14px;background:rgba(139,92,246,.03)">
+          <div style="font-weight:700;color:#7c3aed;font-size:14px;margin-bottom:6px">化气格（天干五合化气）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">日主与月干/时干五合，且生于化神当令之月。甲己化土·乙庚化金·丙辛化水·丁壬化木·戊癸化火。条件极严苛，成格多大富大贵。</div>
+        </div>
+        <div style="border:1px solid rgba(184,134,11,.3);border-radius:10px;padding:14px;background:rgba(184,134,11,.05);grid-column:1/-1">
+          <div style="font-weight:700;color:var(--earth);font-size:14px;margin-bottom:6px">建禄格 / 月刃格</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">月令为日主之禄(比肩)或刃(劫财)。建禄格=白手起家、自立自强，无格可取需另寻用神；月刃格=刚强勇猛，需官杀制刃。<strong>特点：</strong>身强，用财官食伤，忌再行比劫运。</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">三、如何判断自己是什么格局？（五步实操法）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">1</div><div style="font-size:13px;line-height:1.8"><strong>排出八字</strong>：用排盘工具输入出生年月日时，得到四柱八字。确认日干（日主）是什么。</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">2</div><div style="font-size:13px;line-height:1.8"><strong>看月令</strong>：找到月支，查它的藏干（本气、中气、余气分别是什么天干）。</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">3</div><div style="font-size:13px;line-height:1.8"><strong>看透出</strong>：月令藏干中，哪个天干出现在年干、月干或时干上？透出者优先取格。</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">4</div><div style="font-size:13px;line-height:1.8"><strong>换算十神</strong>：以日主为基准，将透出的天干换算成十神（正官？七杀？食神？...），这就是你的格局。</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:50%;background:var(--accent2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">5</div><div style="font-size:13px;line-height:1.8"><strong>排除特殊格</strong>：先确认不是从格/专旺格/化气格。如果月令是禄刃，则为建禄/月刃格。</div></div>
+      </div>
+      <div style="margin-top:14px;background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent)">实例：</strong>日主庚金，生于午月（五月）。午藏丁(本气)、己(中气)。若天干透丁→丁是正官→<strong>正官格</strong>；若透己→己是正印→<strong>正印格</strong>；若都不透→取本气丁→正官格。
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ TAB 3: 用神忌神 ============ -->
+<div class="section-panel" id="panel-3">
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;margin:0 0 6px">用神与忌神 —— 八字的"药方"与"毒药"</h2>
+  <p style="color:var(--muted);font-size:13px;margin:0 0 20px">用神=对命局最有利的五行（药），忌神=最有害的五行（毒）。大运流年遇用神则吉，遇忌神则凶。</p>
+
+  <div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">一、第一步：判断日主旺衰（得令·得地·得势）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 14px">取用神的前提是判断日主强弱。强则需克泄耗，弱则需生扶。判断强弱看三个维度：</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--accent)">
+          <div style="font-weight:700;color:var(--accent);font-size:14px;margin-bottom:6px">得令（占50%权重）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">日主五行是否得月令之气？<br>· 月令生扶日主（印比当令）→ 得令，身偏强<br>· 月令克泄耗日主（官杀食伤财当令）→ 失令，身偏弱<br><strong>月令是旺衰第一决定因素</strong></div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--accent2)">
+          <div style="font-weight:700;color:var(--accent2);font-size:14px;margin-bottom:6px">得地（有根，占30%）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">日主在地支中是否有根（禄、刃、库、余气）？<br>· 日支/年支/时支有日主同五行藏干→有根<br>· 根越多越深（禄&gt;刃&gt;库&gt;余气），日主越强<br>· 无根的天干叫"虚浮"，力量极弱</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--wood)">
+          <div style="font-weight:700;color:var(--wood);font-size:14px;margin-bottom:6px">得势（党众，占20%）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">天干中帮助日主的五行（印星、比劫）数量？<br>· 天干多印比→得势，有帮扶<br>· 天干多克泄耗→失势，日主孤立<br>· 地支合会成印比局→大大增强</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent)">快速判断法：</strong>得令+得地=身强；失令+失地=身弱；得令但失地=中和偏强；失令但得地得势=中和偏弱。中和之命最难取用神，需细看组合。
+      </div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">二、第二步：选取用神（扶抑·调候·通关）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+        <div style="background:rgba(192,57,43,.05);border:1px solid rgba(192,57,43,.25);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--fire);font-size:14px;margin-bottom:8px">身强 → 用克泄耗</div>
+          <div style="font-size:12px;line-height:2">· <strong>官杀</strong>（克我）—— 约束、压力化为权力<br>· <strong>食伤</strong>（我生）—— 才华输出、创造力<br>· <strong>财星</strong>（我克）—— 财富、目标驱动<br><strong>忌神：</strong>印星、比劫（生扶日主者）</div>
+        </div>
+        <div style="background:rgba(41,128,185,.05);border:1px solid rgba(41,128,185,.25);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--water);font-size:14px;margin-bottom:8px">身弱 → 用生扶</div>
+          <div style="font-size:12px;line-height:2">· <strong>印星</strong>（生我）—— 贵人、学识、庇护<br>· <strong>比劫</strong>（同我）—— 朋友、合作、助力<br><strong>忌神：</strong>官杀、财星、食伤（克泄耗日主者）<br>注意：身弱食伤过旺也为忌</div>
+        </div>
+      </div>
+      <div style="font-size:13px;line-height:1.9">
+        <p style="margin:0 0 8px"><strong>调候用神：</strong>除扶抑外还要考虑气候。生于寒冬（亥子丑月）需火调候，生于酷暑（巳午未月）需水调候。调候用神有时优先于扶抑用神。</p>
+        <p style="margin:0 0 8px"><strong>通关用神：</strong>两强相争（如金木相战、水火相战），取中间通关之神（金克木用水通关，水克火用木通关）。</p>
+        <p style="margin:0"><strong>病药用神：</strong>命局有病（如伤官见官、枭神夺食），取去病之药为用神。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">三、五行喜忌如何"看透"？—— 生活中的应用</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 12px">确定用神五行后，可指导生活方方面面：</p>
+      <div class="scroll-x"><table>
+        <tr><th>用神五行</th><th>幸运颜色</th><th>有利方位</th><th>适合行业</th><th>开运方法</th></tr>
+        <tr><td class="wx-wood" style="font-weight:700">木</td><td>绿、青、翠</td><td>东方</td><td>教育、出版、林业、服装、医药</td><td>多接触自然、养绿植、木质饰品</td></tr>
+        <tr><td class="wx-fire" style="font-weight:700">火</td><td>红、紫、橙、粉</td><td>南方</td><td>能源、餐饮、娱乐、电子、美容</td><td>多晒太阳、红色服饰、灯光照明</td></tr>
+        <tr><td class="wx-earth" style="font-weight:700">土</td><td>黄、棕、米色</td><td>中央/本地</td><td>房地产、农业、陶瓷、咨询、建筑</td><td>陶瓷玉石饰品、稳定作息、脚踏实地</td></tr>
+        <tr><td class="wx-metal" style="font-weight:700">金</td><td>白、银、金、灰</td><td>西方</td><td>金融、机械、IT、法律、汽车</td><td>金属饰品、保持整洁、多运动</td></tr>
+        <tr><td class="wx-water" style="font-weight:700">水</td><td>黑、蓝、深蓝</td><td>北方</td><td>贸易、物流、旅游、水产、传媒</td><td>近水而居、多喝水、多读书学习</td></tr>
+      </table></div>
+      <div style="margin-top:12px;background:var(--accent2-soft);border-left:3px solid var(--accent2);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent2)">大运流年看法：</strong>大运（每10年一步）的天干地支五行，如果是用神→这10年顺利；是忌神→这10年多波折。流年（每年）同理。<strong>这就是"十年河东十年河西"的命理根源。</strong>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ TAB 4: 神煞大全 ============ -->
+<div class="section-panel" id="panel-4">
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;margin:0 0 6px">神煞大全 —— 八字中的"特殊信号"</h2>
+  <p style="color:var(--muted);font-size:13px;margin:0 0 20px">神煞是八字中特殊组合的代号。吉神非绝对吉，凶煞非绝对凶——需结合喜忌综合判断。但神煞出现在不同柱位，含义截然不同。</p>
+
+  <div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,rgba(45,122,62,.1),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px;color:var(--wood)">一、常见吉神（12个最常用）与柱位对应</span>
+      <span class="acc-arrow" style="color:var(--wood);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div class="scroll-x"><table>
+        <tr><th>神煞</th><th>含义</th><th>年柱(早年/祖上)</th><th>月柱(青年/事业)</th><th>日柱(本人/婚姻)</th><th>时柱(晚年/子女)</th></tr>
+        <tr><td style="font-weight:700">天乙贵人</td><td>第一贵人，逢凶化吉</td><td>祖上有靠</td><td>事业有贵人</td><td>一生贵人助</td><td>晚年/子女有贵人</td></tr>
+        <tr><td style="font-weight:700">文昌贵人</td><td>聪明好学、文笔好</td><td>少年聪慧</td><td>靠才华吃饭</td><td>本人有文才</td><td>子女聪明好学</td></tr>
+        <tr><td style="font-weight:700">驿马</td><td>走动、变迁、动中求财</td><td>早年离家</td><td>事业多变动</td><td>一生奔波、宜外地</td><td>晚年多动、子女远走</td></tr>
+        <tr><td style="font-weight:700">桃花(咸池)</td><td>异性缘、魅力、人缘</td><td>祖上风流</td><td>青年异性缘旺</td><td>本人魅力大</td><td>晚年桃花、子女有魅力</td></tr>
+        <tr><td style="font-weight:700">禄神</td><td>俸禄、衣食、财禄</td><td>祖上有基业</td><td>青年有收入</td><td>一生衣食无忧</td><td>晚年有靠、子女孝顺</td></tr>
+        <tr><td style="font-weight:700">华盖</td><td>艺术、玄学、孤傲</td><td>—</td><td>—</td><td>有艺术天赋、喜独处</td><td>子女有特殊才能</td></tr>
+        <tr><td style="font-weight:700">将星</td><td>领导才能、掌权</td><td>—</td><td>事业有管理权</td><td>有领导魄力</td><td>晚年掌权</td></tr>
+        <tr><td style="font-weight:700">红鸾/天喜</td><td>喜事、姻缘</td><td>—</td><td>早婚之象</td><td>婚姻美满</td><td>子女喜事</td></tr>
+        <tr><td style="font-weight:700">天德/月德</td><td>逢凶化吉、德行</td><td>—</td><td>—</td><td>一生平顺少灾</td><td>—</td></tr>
+        <tr><td style="font-weight:700">三奇贵人</td><td>奇异之才、福分</td><td>—</td><td>—</td><td>才华出众、奇遇多</td><td>—</td></tr>
+        <tr><td style="font-weight:700">金舆</td><td>车马、贵气、身份</td><td>—</td><td>—</td><td>有车有房、身份尊贵</td><td>—</td></tr>
+        <tr><td style="font-weight:700">魁罡</td><td>刚毅果断、权威</td><td>—</td><td>—</td><td>性格刚烈、宜武职/管理</td><td>—</td></tr>
+      </table></div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,rgba(192,57,43,.08),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px;color:var(--fire)">二、常见凶煞（需警惕的信号）</span>
+      <span class="acc-arrow" style="color:var(--fire);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div class="scroll-x"><table>
+        <tr><th>神煞</th><th>含义</th><th>关键影响</th></tr>
+        <tr><td style="font-weight:700">羊刃</td><td>刚烈、血光、冲动</td><td>日坐羊刃：性格暴躁、易外伤、婚姻不顺；男命克妻</td></tr>
+        <tr><td style="font-weight:700">空亡</td><td>虚空、不实、落空</td><td>吉神空亡=吉力减半；凶煞空亡=凶力减半。财星空亡=财来财去</td></tr>
+        <tr><td style="font-weight:700">孤辰/寡宿</td><td>孤独、六亲缘薄</td><td>男怕孤辰、女怕寡宿。日时逢之，婚姻感情易孤独</td></tr>
+        <tr><td style="font-weight:700">亡神/劫煞</td><td>损耗、是非、破财</td><td>与驿马同柱=奔波破财；与七杀同柱=易有官非</td></tr>
+        <tr><td style="font-weight:700">阴差阳错</td><td>婚姻波折、错过</td><td>日柱逢之：婚姻易有波折、错过良缘</td></tr>
+        <tr><td style="font-weight:700">孤鸾煞</td><td>婚姻不顺、感情孤独</td><td>日柱（乙巳、丁巳、辛亥、戊申、壬寅、戊午、壬子、丙午）逢之</td></tr>
+        <tr><td style="font-weight:700">十恶大败</td><td>破财、祖业难守</td><td>日柱逢之（甲辰、乙巳、壬申、丙申、丁亥、庚辰、戊戌、癸亥、辛巳、己丑）</td></tr>
+        <tr><td style="font-weight:700">天罗地网</td><td>困顿、羁绊、官非</td><td>男怕天罗(戌亥)、女怕地网(辰巳)，主困顿不顺</td></tr>
+        <tr><td style="font-weight:700">红艳煞</td><td>感情复杂、色欲纠缠</td><td>日干查地支，主异性缘过旺、感情多纠葛</td></tr>
+      </table></div>
+      <div style="margin-top:12px;background:rgba(192,57,43,.06);border-left:3px solid var(--fire);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--fire)">重要提醒：</strong>凶煞不可怕！① 凶煞为喜用神时凶性大减反为我用（如羊刃为用=武贵）；② 有吉神同柱可化解；③ 大运流年引动才应事。神煞是"参考信号"，不是"判决书"。
+      </div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">三、神煞在不同柱位的含义差异（关键！）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--accent2)">
+          <div style="font-weight:700;color:var(--accent2);font-size:14px;margin-bottom:6px">年柱神煞</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">影响<strong>早年(0-16岁)和祖上</strong>。<br>· 年柱贵人=祖上积德、少年有靠<br>· 年柱驿马=早年离家或搬迁<br>· 年柱桃花=早恋倾向<br>· 年柱空亡=祖业难靠、与祖辈缘薄</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--wood)">
+          <div style="font-weight:700;color:var(--wood);font-size:14px;margin-bottom:6px">月柱神煞</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">影响<strong>青年(16-32岁)、父母、事业</strong>。<br>· 月柱文昌=学业优异、靠才华吃饭<br>· 月柱驿马=事业多变动、宜外地发展<br>· 月柱桃花=青年异性缘旺、恋爱早<br>· 月柱羊刃=青年性格叛逆、易冲突</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--accent)">
+          <div style="font-weight:700;color:var(--accent);font-size:14px;margin-bottom:6px">日柱神煞（影响最大）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">影响<strong>本人一生和婚姻(32-48岁)</strong>。<br>· 日坐贵人=一生有贵人相助<br>· 日坐桃花=本人魅力大、异性缘旺<br>· 日坐羊刃=性格刚烈、婚姻易冲突<br>· 日坐孤鸾/阴差阳错=婚姻波折<br>· 日坐魁罡=刚毅果断、适合掌权</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--water)">
+          <div style="font-weight:700;color:var(--water);font-size:14px;margin-bottom:6px">时柱神煞</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">影响<strong>晚年(48岁后)和子女</strong>。<br>· 时柱贵人=晚年有贵人、子女有靠<br>· 时柱文昌=子女聪明好学<br>· 时柱驿马=晚年多动、子女在远方<br>· 时柱桃花=晚年桃花、子女有魅力<br>· 时柱空亡=子女缘薄、晚年略孤独</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ TAB 5: 刑冲会合 ============ -->
+<div class="section-panel" id="panel-5">
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;margin:0 0 6px">刑冲会合 —— 地支之间的"化学反应"</h2>
+  <p style="color:var(--muted);font-size:13px;margin:0 0 20px">地支之间不是孤立的，它们会发生合、冲、刑、害、会、破等关系，改变五行力量分布。大运流年触发这些关系时，往往就是人生转折点。</p>
+
+  <div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">一、核心关系速查表</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:14px">
+        <div style="background:rgba(45,122,62,.06);border:1px solid rgba(45,122,62,.25);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--wood);font-size:14px;margin-bottom:8px">六合（吉·牵绊）</div>
+          <div style="font-size:12px;line-height:2">子丑合土 · 寅亥合木<br>卯戌合火 · 辰酉合金<br>巳申合水 · 午未合(日月)<br><strong>主：</strong>合作、姻缘、牵绊、优柔</div>
+        </div>
+        <div style="background:rgba(192,57,43,.05);border:1px solid rgba(192,57,43,.25);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--fire);font-size:14px;margin-bottom:8px">六冲（凶·变动）</div>
+          <div style="font-size:12px;line-height:2">子午冲 · 丑未冲 · 寅申冲<br>卯酉冲 · 辰戌冲 · 巳亥冲<br><strong>主：</strong>变动、冲突、搬迁、分离<br>冲喜神=凶，冲忌神=吉</div>
+        </div>
+        <div style="background:rgba(180,83,9,.08);border:1px solid rgba(180,83,9,.25);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--accent);font-size:14px;margin-bottom:8px">三合局（吉·增强）</div>
+          <div style="font-size:12px;line-height:2">申子辰合水局 · 亥卯未合木局<br>寅午戌合火局 · 巳酉丑合金局<br><strong>主：</strong>某五行力量大增<br>合化为喜神=大吉</div>
+        </div>
+        <div style="background:rgba(45,107,138,.06);border:1px solid rgba(45,107,138,.25);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--accent2);font-size:14px;margin-bottom:8px">三会方（吉·最强）</div>
+          <div style="font-size:12px;line-height:2">寅卯辰会东方木<br>巳午未会南方火<br>申酉戌会西方金<br>亥子丑会北方水<br><strong>力量大于三合局</strong></div>
+        </div>
+        <div style="background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.25);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:#7c3aed;font-size:14px;margin-bottom:8px">三刑（凶·刑伤）</div>
+          <div style="font-size:12px;line-height:2">寅巳申三刑 · 丑戌未三刑<br>子卯相刑（无礼之刑）<br>辰午酉亥自刑<br><strong>主：</strong>是非、刑伤、官非、病痛</div>
+        </div>
+        <div style="background:rgba(107,122,144,.1);border:1px solid rgba(107,122,144,.3);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--metal);font-size:14px;margin-bottom:8px">六害（凶·暗损）</div>
+          <div style="font-size:12px;line-height:2">子未害 · 丑午害 · 寅巳害<br>卯辰害 · 申亥害 · 酉戌害<br><strong>主：</strong>暗中损害、小人、阻碍<br>力量小于冲刑</div>
+        </div>
+      </div>
+      <div style="background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent)">判断原则：</strong>合冲刑害本身无绝对吉凶，关键看涉及的五行是喜神还是忌神。<strong>喜神被合被冲=凶；忌神被合被冲=吉。</strong>例如：忌神财星被比劫冲掉=破财之灾解除；喜神用神被冲=该年大凶。
+      </div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">二、天干五合与实战应用</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="font-size:13px;line-height:1.9">
+        <p style="margin:0 0 10px"><strong>天干五合：</strong>甲己合土、乙庚合金、丙辛合水、丁壬合木、戊癸合火。年月合=祖上父母关系好；月日合=本人与父母/事业关系融洽；日时合=夫妻感情好、子女孝顺。</p>
+        <p style="margin:0 0 10px"><strong>大运流年触发：</strong>命局中的合冲是"静态"的，大运流年带来新的地支，与命局原有地支发生合冲刑害时，就是"动态应期"。例如命局有寅，流年申→寅申冲，该年多变动。</p>
+        <p style="margin:0"><strong>应事规律：</strong>冲动配偶宫（日支）→婚姻感情变动；冲动财星→财运变动；冲动官星→事业变动；冲动印星→房产/学业/母亲相关变动。</p>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ============ TAB 6: 实战应用 ============ -->
+<div class="section-panel" id="panel-6">
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;margin:0 0 6px">实战应用 —— 事业·财富·健康·家庭·房产</h2>
+  <p style="color:var(--muted);font-size:13px;margin:0 0 20px">理论的最终目的是应用。以下是五大人生领域的八字判断方法，结合格局、十神、用神、神煞综合分析。</p>
+
+  <!-- 事业 -->
+  <div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">一、事业建议：行业选择 · 打工还是创业？</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent2)">① 按用神五行选行业</div>
+      <div class="scroll-x" style="margin-bottom:14px"><table>
+        <tr><th>用神</th><th>适合行业</th><th>不适合行业</th></tr>
+        <tr><td class="wx-wood" style="font-weight:700">木</td><td>教育、出版、文化、林业、服装、医药、素食</td><td>金属机械、金融（金克木）</td></tr>
+        <tr><td class="wx-fire" style="font-weight:700">火</td><td>能源、餐饮、娱乐、电子、美容、互联网、广告</td><td>水产物流（水克火）</td></tr>
+        <tr><td class="wx-earth" style="font-weight:700">土</td><td>房地产、建筑、农业、陶瓷、咨询、保险、仓储</td><td>木类行业（木克土）</td></tr>
+        <tr><td class="wx-metal" style="font-weight:700">金</td><td>金融、机械、IT硬件、法律、汽车、珠宝、外科</td><td>火类行业（火克金）</td></tr>
+        <tr><td class="wx-water" style="font-weight:700">水</td><td>贸易、物流、旅游、水产、传媒、饮品、咨询</td><td>土类行业（土克水）</td></tr>
+      </table></div>
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent2)">② 打工还是创业？（十神判断法）</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
+        <div style="border:1px solid rgba(45,107,138,.3);border-radius:10px;padding:14px;background:rgba(45,107,138,.04)">
+          <div style="font-weight:700;color:var(--accent2);font-size:13px;margin-bottom:6px">适合打工/管理（官杀印星旺）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">· 正官格/正印格：稳定守规矩，适合公职、大公司<br>· 官印相生：仕途顺利、适合管理层<br>· 七杀有制（食神制杀）：适合军警、武职、高压管理<br>· 月柱官星为用：青年即可在大平台发展</div>
+        </div>
+        <div style="border:1px solid rgba(180,83,9,.3);border-radius:10px;padding:14px;background:rgba(180,83,9,.05)">
+          <div style="font-weight:700;color:var(--accent);font-size:13px;margin-bottom:6px">适合创业（食伤生财+比劫）</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">· 食伤生财格：有技术/才华+能变现，创业最佳配置<br>· 偏财格+驿马：动中求财、适合贸易/投资<br>· 比劫旺+财星为用：适合合伙创业（比劫=合伙人）<br>· 伤官配印：创新型创业、技术/内容创业<br>· 建禄格身强：白手起家、独立创业</div>
+        </div>
+        <div style="border:1px solid rgba(192,57,43,.3);border-radius:10px;padding:14px;background:rgba(192,57,43,.04);grid-column:1/-1">
+          <div style="font-weight:700;color:var(--fire);font-size:13px;margin-bottom:6px">不建议创业的信号</div>
+          <div style="font-size:12px;line-height:1.8;color:var(--muted)">· 身弱财旺（财多身弱）：担不起财，创业易破财<br>· 官杀混杂无制：压力大、是非多<br>· 比劫夺财（比劫旺+财星弱）：合伙必散、钱财被分<br>· 财星空亡+劫财旺：财来财去，守不住<br>· 正印过旺无财星：依赖性强、缺乏行动力</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 财富四等级 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">二、财富等级：暴富·富裕·小康·不够用（四级判定法）</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">
+        <div style="border:2px solid #d4af37;border-radius:12px;padding:16px;background:linear-gradient(135deg,rgba(212,175,55,.12),transparent)">
+          <div style="font-family:'Noto Serif SC',serif;font-weight:900;font-size:18px;color:#b8860b;margin-bottom:8px">第一级：暴富（大富）</div>
+          <div style="font-size:12px;line-height:1.9;color:var(--muted)">
+            <strong>特征（满足2条以上）：</strong><br>
+            · 从财格/从儿格（特殊格局）<br>
+            · 食伤生财成势，财星为用且旺相有根<br>
+            · 偏财旺+驿马+禄神（动中得大财）<br>
+            · 财库（辰戌丑未）逢冲开库<br>
+            · 用神为财，大运连续30年走财运<br>
+            <strong style="color:#b8860b">代表：</strong>企业家、投资家、行业巨头
+          </div>
+        </div>
+        <div style="border:2px solid var(--accent);border-radius:12px;padding:16px;background:linear-gradient(135deg,var(--accent-soft),transparent)">
+          <div style="font-family:'Noto Serif SC',serif;font-weight:900;font-size:18px;color:var(--accent);margin-bottom:8px">第二级：富裕（中富）</div>
+          <div style="font-size:12px;line-height:1.9;color:var(--muted)">
+            <strong>特征：</strong><br>
+            · 财星有根（地支有财星藏干）<br>
+            · 食伤生财但力量中等<br>
+            · 财库在命局但未被冲开<br>
+            · 正财格+官星护财（财不被劫）<br>
+            · 大运有10-20年财运<br>
+            <strong style="color:var(--accent)">代表：</strong>企业高管、成功个体户、专业人士
+          </div>
+        </div>
+        <div style="border:2px solid var(--accent2);border-radius:12px;padding:16px;background:linear-gradient(135deg,var(--accent2-soft),transparent)">
+          <div style="font-family:'Noto Serif SC',serif;font-weight:900;font-size:18px;color:var(--accent2);margin-bottom:8px">第三级：小康（衣食无忧）</div>
+          <div style="font-size:12px;line-height:1.9;color:var(--muted)">
+            <strong>特征：</strong><br>
+            · 财星适度但力量一般<br>
+            · 有食伤生财但食伤不旺<br>
+            · 官印格有稳定收入（正官=稳定工资）<br>
+            · 财星被比劫分夺但有官星护<br>
+            · 财运大运较短（5-10年）<br>
+            <strong style="color:var(--accent2)">代表：</strong>工薪阶层、稳定职业、普通白领
+          </div>
+        </div>
+        <div style="border:2px solid var(--fire);border-radius:12px;padding:16px;background:linear-gradient(135deg,rgba(192,57,43,.08),transparent)">
+          <div style="font-family:'Noto Serif SC',serif;font-weight:900;font-size:18px;color:var(--fire);margin-bottom:8px">第四级：不够用（财来财去）</div>
+          <div style="font-size:12px;line-height:1.9;color:var(--muted)">
+            <strong>特征（满足2条以上）：</strong><br>
+            · 财星为忌神（身弱财旺=富屋贫人）<br>
+            · 比劫旺而夺财（无官星制比劫）<br>
+            · 财星空亡（财来财去守不住）<br>
+            · 劫财羊刃旺+无食伤通关<br>
+            · 大运不走财运，反走比劫运<br>
+            <strong style="color:var(--fire)">改善：</strong>走用神运可提升；固定储蓄、避免投机
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent)">关键公式：</strong>财富 = 财星(有无) × 食伤(财源) × 身强(能否担财) × 大运(时机) × 财库(能否存住)。五维度综合评估，缺一不可。身弱财旺的人"看着有钱但拿不到"，比劫夺财的人"赚到但被分走"。
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 健康 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">三、健康：五行与脏腑的对应关系</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <p style="font-size:13px;line-height:1.9;margin:0 0 12px">八字中某五行<strong>过旺</strong>或<strong>过弱</strong>，对应脏腑就容易出问题。忌神五行=最需要注意的健康部位。</p>
+      <div class="scroll-x"><table>
+        <tr><th>五行</th><th>对应脏腑</th><th>过旺易患</th><th>过弱易患</th><th>养生建议</th></tr>
+        <tr><td class="wx-wood" style="font-weight:700">木</td><td>肝、胆、筋骨、眼睛</td><td>肝火旺盛、高血压、易怒、偏头痛</td><td>肝血不足、眼疾、筋骨酸软</td><td>少熬夜、少饮酒、绿色蔬菜、舒肝解郁</td></tr>
+        <tr><td class="wx-fire" style="font-weight:700">火</td><td>心、小肠、血脉、舌头</td><td>心火上炎、心悸、失眠、口舌生疮</td><td>心血不足、低血压、怕冷、精神差</td><td>静心养神、适度运动、红色食物、避免过度兴奋</td></tr>
+        <tr><td class="wx-earth" style="font-weight:700">土</td><td>脾、胃、肌肉、口腔</td><td>脾胃湿热、消化不良、糖尿病、肥胖</td><td>脾胃虚弱、消瘦、吸收差、乏力</td><td>规律饮食、少吃生冷、黄色食物、细嚼慢咽</td></tr>
+        <tr><td class="wx-metal" style="font-weight:700">金</td><td>肺、大肠、皮肤、鼻子</td><td>肺热、咳嗽、皮肤病、便秘</td><td>肺气虚、易感冒、过敏、皮肤干燥</td><td>多深呼吸、白色食物、保持空气湿润、戒烟</td></tr>
+        <tr><td class="wx-water" style="font-weight:700">水</td><td>肾、膀胱、骨骼、耳朵</td><td>肾火亢、泌尿问题、耳鸣、水肿</td><td>肾虚、腰酸、耳鸣、脱发、记忆力差</td><td>黑色食物、节制房事、充足睡眠、适度运动</td></tr>
+      </table></div>
+      <div style="margin-top:12px;font-size:12px;line-height:1.8;background:rgba(192,57,43,.06);border-left:3px solid var(--fire);padding:10px 14px;border-radius:0 8px 8px 0">
+        <strong style="color:var(--fire)">健康应期：</strong>大运流年走到忌神五行当旺时，对应脏腑最易出问题。如忌神为木，逢寅卯年/运需注意肝胆；忌神为水，逢亥子年需注意肾膀胱。羊刃、七杀、三刑逢冲之年尤需注意意外伤害。
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 家庭 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">四、家庭：六亲关系与婚姻子女判断</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent2)">① 十神对应六亲</div>
+      <div class="scroll-x" style="margin-bottom:14px"><table>
+        <tr><th>六亲</th><th>男命对应十神</th><th>女命对应十神</th><th>所在宫位</th></tr>
+        <tr><td>父亲</td><td>偏财</td><td>正财</td><td>年柱</td></tr>
+        <tr><td>母亲</td><td>正印</td><td>偏印</td><td>年柱/月柱</td></tr>
+        <tr><td>兄弟</td><td>比肩(同性)劫财(异性)</td><td>同左</td><td>月柱</td></tr>
+        <tr><td>妻子(男命)</td><td>正财(正妻)偏财(情人)</td><td>—</td><td>日支(配偶宫)</td></tr>
+        <tr><td>丈夫(女命)</td><td>—</td><td>正官(正夫)七杀(情人)</td><td>日支(配偶宫)</td></tr>
+        <tr><td>儿子</td><td>七杀(男命以官杀为子)</td><td>食神</td><td>时柱</td></tr>
+        <tr><td>女儿</td><td>正官</td><td>伤官</td><td>时柱</td></tr>
+      </table></div>
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent2)">② 婚姻判断要点</div>
+      <div style="font-size:13px;line-height:1.9;margin-bottom:12px">
+        · <strong>配偶宫(日支)</strong>为喜用→配偶有助力、婚姻幸福；为忌神→配偶拖累、婚姻多磨<br>
+        · 日支逢冲（尤其大运流年冲）→婚姻变动、分居或离婚风险<br>
+        · 男命正财为用+日支不被冲→婚姻稳定；财星混杂（正偏财都旺）→感情复杂<br>
+        · 女命正官为用+日支不被冲→婚姻稳定；官杀混杂→感情多纠葛、易有二婚<br>
+        · 桃花+红艳煞多→异性缘旺但需防感情纠葛
+      </div>
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent2)">③ 子女判断要点</div>
+      <div style="font-size:13px;line-height:1.9">
+        · <strong>时柱</strong>为喜用→子女孝顺有出息；为忌神→子女操心<br>
+        · 男命官杀为用+时柱好→子女有成就；女命食伤为用+时柱好→子女优秀<br>
+        · 时柱逢空亡→子女缘薄、或子女不在身边<br>
+        · 食伤(女命)/官杀(男命)被冲克→子女健康或学业需关注
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 房地产 -->
+  <div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden">
+    <div class="acc-header" style="padding:15px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)">
+      <span style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px">五、房地产：房产数量·投资还是自住？</span>
+      <span class="acc-arrow" style="color:var(--accent);font-size:16px">▼</span>
+    </div>
+    <div class="acc-content"><div style="padding:18px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+        <div style="background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.3);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--earth);font-size:14px;margin-bottom:8px">房产的八字符号</div>
+          <div style="font-size:12px;line-height:1.9;color:var(--muted)">
+            · <strong>土</strong>=房产（土主承载、房屋）<br>
+            · <strong>印星</strong>=房产（印为庇护之所、房屋凭证）<br>
+            · <strong>辰戌丑未四库</strong>=房产库（库越多房产潜力越大）<br>
+            · <strong>财库逢冲</strong>=开库得财（可能通过房产变现）
+          </div>
+        </div>
+        <div style="background:var(--accent2-soft);border:1px solid rgba(45,107,138,.3);border-radius:10px;padding:14px">
+          <div style="font-weight:700;color:var(--accent2);font-size:14px;margin-bottom:8px">房产数量判断</div>
+          <div style="font-size:12px;line-height:1.9;color:var(--muted)">
+            · 命局土旺+印星旺+四库多→<strong>多套房产(3套以上)</strong><br>
+            · 印星为用且有根→<strong>2-3套</strong><br>
+            · 印星一般+土有根→<strong>1-2套</strong><br>
+            · 印星弱+土弱+无财库→<strong>租房或一套刚需</strong><br>
+            · 大运走印运/土运→该阶段易购房
+          </div>
+        </div>
+      </div>
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--accent2)">投资型 vs 自住型判断</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="border:1px solid var(--accent);border-radius:10px;padding:14px;background:var(--accent-soft)">
+          <div style="font-weight:700;color:var(--accent);font-size:13px;margin-bottom:6px">适合房产投资</div>
+          <div style="font-size:12px;line-height:1.8">· 偏财旺+驿马（动中求财）<br>· 财库多+逢冲开库（低买高卖）<br>· 食伤生财格（有投资眼光）<br>· 土为用神（房产带来财运）<br>· 大运走财运/土运时投资最佳</div>
+        </div>
+        <div style="border:1px solid var(--accent2);border-radius:10px;padding:14px;background:var(--accent2-soft)">
+          <div style="font-weight:700;color:var(--accent2);font-size:13px;margin-bottom:6px">适合自住为主</div>
+          <div style="font-size:12px;line-height:1.8">· 正印旺+正财（稳定型）<br>· 正官格（求稳不求暴富）<br>· 印星为用但财星弱（房子是庇护非投资品）<br>· 身弱财旺（担不起多套房产）<br>· 比劫夺财（投资易被套）</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8">
+        <strong style="color:var(--accent)">购房时机：</strong>大运或流年走印星运（尤其正印）、土运、或冲动日支/印星时，最易有购房动作。流年与命局三合土局/会土方时，房产运最旺。
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 综合流程 -->
+  <div style="background:linear-gradient(135deg,var(--accent-soft),var(--accent2-soft));border:1px solid var(--accent);border-radius:12px;padding:18px;margin-top:16px">
+    <div style="font-family:'Noto Serif SC',serif;font-weight:900;font-size:17px;margin-bottom:10px;color:var(--accent)">八字分析完整流程（七步走）</div>
+    <div style="font-size:13px;line-height:2">
+      ① <strong>排盘</strong>：排出四柱八字、大运、流年<br>
+      ② <strong>定旺衰</strong>：以月令为核心，判断日主身强身弱<br>
+      ③ <strong>取格局</strong>：月令藏干透出→定格（先排除特殊格）<br>
+      ④ <strong>取用神</strong>：身强用克泄耗，身弱用生扶，兼顾调候通关<br>
+      ⑤ <strong>看十神</strong>：十神分布在何柱？代表什么人生领域？<br>
+      ⑥ <strong>查神煞+刑冲</strong>：特殊信号+地支关系的动态影响<br>
+      ⑦ <strong>断大运流年</strong>：用神运=吉，忌神运=凶，合冲应期=事件触发点
+    </div>
+  </div>
+</div>
+
+<!-- ============ TAB 7: 智能排盘分析 ============ -->
+<div class="section-panel" id="panel-7">
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:900;margin:0 0 6px">智能排盘分析 —— 输入八字，自动生成完整解读</h2>
+  <p style="color:var(--muted);font-size:13px;margin:0 0 20px">输入你的四柱八字（或直接粘贴排盘文本），自动计算十神、藏干、格局、用神、神煞、大运，并生成事业、财富、健康、家庭、房产等各领域分析。</p>
+
+  <!-- 输入区 -->
+  <div style="background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 4px 20px rgba(180,83,9,.1)">
+    <div style="font-family:'Noto Serif SC',serif;font-weight:700;font-size:16px;margin-bottom:12px">第一步：输入四柱八字</div>
+    
+    <!-- 下拉选择 -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px" id="pillar-selectors">
+      <div style="text-align:center">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px;font-weight:600">年柱</div>
+        <select id="y-stem" style="width:100%;padding:8px 4px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-weight:700;text-align:center;font-family:'Noto Serif SC',serif;margin-bottom:4px"></select>
+        <select id="y-branch" style="width:100%;padding:8px 4px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-weight:700;text-align:center;font-family:'Noto Serif SC',serif"></select>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px;font-weight:600">月柱</div>
+        <select id="m-stem" style="width:100%;padding:8px 4px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-weight:700;text-align:center;font-family:'Noto Serif SC',serif;margin-bottom:4px"></select>
+        <select id="m-branch" style="width:100%;padding:8px 4px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-weight:700;text-align:center;font-family:'Noto Serif SC',serif"></select>
+      </div>
+      <div style="text-align:center;border:2px solid var(--accent);border-radius:10px;padding:6px;background:var(--accent-soft)">
+        <div style="font-size:12px;color:var(--accent);margin-bottom:4px;font-weight:700">日柱（日主）</div>
+        <select id="d-stem" style="width:100%;padding:8px 4px;border:1px solid var(--accent);border-radius:8px;font-size:15px;font-weight:900;text-align:center;font-family:'Noto Serif SC',serif;margin-bottom:4px;background:#fff"></select>
+        <select id="d-branch" style="width:100%;padding:8px 4px;border:1px solid var(--accent);border-radius:8px;font-size:15px;font-weight:900;text-align:center;font-family:'Noto Serif SC',serif;background:#fff"></select>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px;font-weight:600">时柱</div>
+        <select id="h-stem" style="width:100%;padding:8px 4px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-weight:700;text-align:center;font-family:'Noto Serif SC',serif;margin-bottom:4px"></select>
+        <select id="h-branch" style="width:100%;padding:8px 4px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-weight:700;text-align:center;font-family:'Noto Serif SC',serif"></select>
+      </div>
+    </div>
+
+    <!-- 性别（大运顺逆） -->
+    <div style="display:flex;gap:16px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
+      <span style="font-size:13px;font-weight:600">性别（决定大运顺逆）：</span>
+      <label style="font-size:13px;cursor:pointer"><input type="radio" name="gender" value="male" checked style="margin-right:4px">男</label>
+      <label style="font-size:13px;cursor:pointer"><input type="radio" name="gender" value="female" style="margin-right:4px">女</label>
+    </div>
+
+    <!-- 粘贴区 -->
+    <details style="margin-bottom:14px;border:1px dashed var(--border);border-radius:8px;padding:10px">
+      <summary style="font-size:13px;cursor:pointer;color:var(--accent2);font-weight:600">或直接粘贴排盘文本（自动识别）</summary>
+      <textarea id="paste-area" rows="3" style="width:100%;margin-top:8px;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:monospace" placeholder="粘贴如：天干:庚 庚 己 庚 / 地支:午 辰 未 午 这类格式"></textarea>
+      <button id="parse-paste" style="margin-top:6px;padding:6px 14px;background:var(--accent2-soft);color:var(--accent2);border:1px solid var(--accent2);border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">解析并填入</button>
+    </details>
+
+    <!-- 按钮 -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button id="analyze-btn" style="padding:12px 28px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Noto Serif SC',serif;box-shadow:0 4px 12px rgba(180,83,9,.3)">开始分析</button>
+      <button id="example-btn" style="padding:12px 20px;background:#fff;color:var(--accent);border:1px solid var(--accent);border-radius:10px;font-size:13px;cursor:pointer;font-weight:600">填入示例（庚午/庚辰/己未/庚午）</button>
+    </div>
+  </div>
+
+  <!-- 输出区 -->
+  <div id="analysis-output" style="min-height:100px">
+    <div style="background:var(--card);border:1px dashed var(--border);border-radius:12px;padding:40px 20px;text-align:center;color:var(--muted);font-size:13px">
+      <div style="font-size:36px;margin-bottom:10px;color:var(--accent);opacity:.4">☯</div>
+      输入八字后点击"开始分析"，这里将生成完整的命局解读
+    </div>
+  </div>
+</div>
+
+</div><!-- end max-width container -->
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:24px 16px 40px;border-top:1px solid var(--border);color:var(--muted);font-size:11px;line-height:1.8">
+  <div style="font-family:'Noto Serif SC',serif;font-size:13px;color:var(--accent);margin-bottom:6px">「财官印食，用神之善而顺用之；煞伤劫刃，用神之不善而逆用之」——《子平真诠》</div>
+  本页面为八字命理学习参考资料，内容整合传统命理理论，仅供学习研究之用。命理分析需综合多维度判断，单一指标不可作为决策依据。
+</div>
+
+<script>
+(function(){
+  // ===== TAB NAVIGATION =====
+  var tabs=document.querySelectorAll('.tab-btn');
+  var panels=document.querySelectorAll('.section-panel');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.remove('active')});
+      panels.forEach(function(p){p.classList.remove('active')});
+      t.classList.add('active');
+      var idx=t.getAttribute('data-tab');
+      document.getElementById('panel-'+idx).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  // ===== ACCORDION =====
+  document.querySelectorAll('.acc-header').forEach(function(h){
+    h.addEventListener('click',function(){
+      h.parentElement.classList.toggle('open');
+    });
+  });
+
+  // ===== TEN GODS DATA =====
+  var stems=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+  var stemEl={甲:'木',乙:'木',丙:'火',丁:'火',戊:'土',己:'土',庚:'金',辛:'金',壬:'水',癸:'水'};
+  var stemYY={甲:'阳',乙:'阴',丙:'阳',丁:'阴',戊:'阳',己:'阴',庚:'阳',辛:'阴',壬:'阳',癸:'阴'};
+  var elColor={木:'var(--wood)',火:'var(--fire)',土:'var(--earth)',金:'var(--metal)',水:'var(--water)'};
+  var sheng={木:'火',火:'土',土:'金',金:'水',水:'木'};
+  var shengWo={木:'水',火:'木',土:'火',金:'土',水:'金'};
+  var ke={木:'土',火:'金',土:'水',金:'木',水:'火'};
+  var keWo={木:'金',火:'水',土:'木',金:'火',水:'土'};
+
+  function getGod(day,other){
+    var de=stemEl[day],oe=stemEl[other];
+    var sameYY=(stemYY[day]===stemYY[other]);
+    if(de===oe){return sameYY?'比肩':'劫财';}
+    if(shengWo[de]===oe){return sameYY?'偏印':'正印';}
+    if(sheng[de]===oe){return sameYY?'食神':'伤官';}
+    if(keWo[de]===oe){return sameYY?'七杀':'正官';}
+    if(ke[de]===oe){return sameYY?'偏财':'正财';}
+    return '?';
+  }
+
+  var godInfo={
+    '正官':{cat:'官杀',color:'var(--metal)',desc:'正当权力、地位、责任。女命为夫星。',traits:'责任心强·守规矩·适合公职管理'},
+    '七杀':{cat:'官杀',color:'var(--fire)',desc:'压力、竞争、威权。又称偏官，女命为情人/偏夫。',traits:'果断霸气·敢冒险·适合武职创业'},
+    '正印':{cat:'印枭',color:'var(--water)',desc:'学识、贵人、母亲、庇护。文凭、房产。',traits:'好学善良·有贵人助·适合学术教育'},
+    '偏印':{cat:'印枭',color:'var(--water)',desc:'偏门学问、玄学、直觉。又称枭神，夺食。',traits:'思维独特·适合技术研究·易孤僻'},
+    '比肩':{cat:'比劫',color:'var(--wood)',desc:'兄弟、朋友、同辈、合作。同我者。',traits:'独立自信·善合作·易竞争'},
+    '劫财':{cat:'比劫',color:'var(--wood)',desc:'竞争、争夺、合伙人。易夺财。',traits:'行动力强·敢拼·易破财耗财'},
+    '食神':{cat:'食伤',color:'var(--fire)',desc:'才华、口福、享受、子女(女命)。',traits:'温和有才华·会享受·艺术天赋'},
+    '伤官':{cat:'食伤',color:'var(--fire)',desc:'才华、叛逆、创新、口才。克官星。',traits:'聪明傲气·创造力强·易得罪人'},
+    '正财':{cat:'财星',color:'var(--earth)',desc:'正当收入、稳定财富、男命正妻。',traits:'务实节俭·理财稳·适合稳定收入'},
+    '偏财':{cat:'财星',color:'var(--earth)',desc:'意外之财、投资、人缘、男命父亲/情人。',traits:'豪爽大方·投资眼光·适合贸易投机'}
+  };
+
+  // ===== STEM BUTTONS (interactive calculator) =====
+  var btnContainer=document.getElementById('stem-buttons');
+  if(btnContainer){
+    stems.forEach(function(s,i){
+      var btn=document.createElement('button');
+      btn.className='stem-btn'+(i===0?' active':'');
+      btn.textContent=s;
+      btn.style.cssText='width:42px;height:42px;border-radius:50%;border:2px solid '+elColor[stemEl[s]]+';background:#fff;color:'+elColor[stemEl[s]]+';font-weight:700;font-size:17px;font-family:"Noto Serif SC",serif;';
+      btn.setAttribute('data-stem',s);
+      btn.addEventListener('click',function(){
+        document.querySelectorAll('.stem-btn').forEach(function(b){b.classList.remove('active')});
+        btn.classList.add('active');
+        renderGods(s);
+      });
+      btnContainer.appendChild(btn);
+    });
+  }
+
+  function renderGods(day){
+    var container=document.getElementById('god-result');
+    if(!container) return;
+    container.innerHTML='';
+    var godMap={};
+    stems.forEach(function(s){
+      if(s===day) return;
+      var g=getGod(day,s);
+      if(!godMap[g]) godMap[g]=[];
+      godMap[g].push(s);
+    });
+    var order=['正官','七杀','正印','偏印','比肩','劫财','食神','伤官','正财','偏财'];
+    order.forEach(function(g){
+      if(!godMap[g]) return;
+      var info=godInfo[g];
+      var card=document.createElement('div');
+      card.className='god-card';
+      card.style.cssText='border:1px solid '+info.color+';border-radius:10px;padding:10px;background:#fff;';
+      card.innerHTML='<div style="font-weight:700;font-size:14px;color:'+info.color+';font-family:\'Noto Serif SC\',serif;">'+g+' <span style="font-size:10px;color:var(--muted);font-weight:400;">'+info.cat+'</span></div>'+
+        '<div style="font-size:15px;font-weight:700;margin:4px 0;color:var(--text);letter-spacing:2px;">'+godMap[g].join(' ')+'</div>'+
+        '<div style="font-size:11px;color:var(--muted);line-height:1.5;">'+info.desc+'</div>';
+      container.appendChild(card);
+    });
+    var exp=document.getElementById('god-explain');
+    if(exp){
+      var otherIdx=(stems.indexOf(day)+5)%10;
+      var other=stems[otherIdx];
+      exp.innerHTML='<strong style="color:var(--accent);">日主 '+day+'（'+stemYY[day]+stemEl[day]+'）：</strong>以 '+day+' 为中心，其他天干按五行生克+阴阳异同得出十神。例如 '+day+' 见 '+other+'（'+stemEl[other]+'）= 我克者为财，阴阳'+(stemYY[day]===stemYY[other]?'相同为偏财':'不同为正财')+'。';
+    }
+  }
+  renderGods('甲');
+
+  // ===== GOD CARDS (static display) =====
+  var gc=document.getElementById('god-cards');
+  if(gc){
+    Object.keys(godInfo).forEach(function(g){
+      var info=godInfo[g];
+      var div=document.createElement('div');
+      div.className='god-card';
+      div.style.cssText='border-left:4px solid '+info.color+';background:#fff;border:1px solid var(--border);border-left:4px solid '+info.color+';border-radius:10px;padding:14px;';
+      div.innerHTML='<div style="font-family:\'Noto Serif SC\',serif;font-weight:900;font-size:17px;color:'+info.color+';">'+g+' <span class="pill" style="background:'+info.color+'22;color:'+info.color+';font-size:10px;">'+info.cat+'</span></div>'+
+        '<div style="font-size:12px;color:var(--muted);margin:6px 0;line-height:1.7;">'+info.desc+'</div>'+
+        '<div style="font-size:11px;color:var(--text);font-weight:600;">'+info.traits+'</div>';
+      gc.appendChild(div);
+    });
+  }
+
+  // ===== GEJU CARDS =====
+  var gejuData=[
+    {name:'正官格',color:'var(--metal)',desc:'月令透正官。主贵气、端正、守规矩。',suit:'适合公职、管理、大企业。用神：财官印，忌伤官见官。'},
+    {name:'七杀格',color:'var(--fire)',desc:'月令透七杀。主威权、刚猛、压力大。',suit:'需食神制杀或印星化杀。适合军警、武职、创业。忌杀无制。'},
+    {name:'正财格',color:'var(--earth)',desc:'月令透正财。主勤劳致富、稳定收入。',suit:'适合稳定经营、工薪致富。身强用财，身弱用印比。忌比劫夺财。'},
+    {name:'偏财格',color:'var(--earth)',desc:'月令透偏财。主意外之财、投资、人缘。',suit:'适合贸易、投资、销售。身强担财则富，身弱则财多反累。'},
+    {name:'正印格',color:'var(--water)',desc:'月令透正印。主学问、慈爱、贵人。',suit:'适合教育、学术、文职。印旺需财星破印，忌印多无制。'},
+    {name:'偏印格',color:'var(--water)',desc:'月令透偏印(枭神)。主偏门学问、特殊技能。',suit:'适合技术、研究、玄学、艺术。忌枭神夺食(无财星制)。'},
+    {name:'食神格',color:'var(--fire)',desc:'月令透食神。主福禄寿全、才华横溢。',suit:'适合艺术、餐饮、教育、自由职业。食神生财最佳。忌枭神夺食。'},
+    {name:'伤官格',color:'var(--fire)',desc:'月令透伤官。主聪明叛逆、才高八斗。',suit:'适合创意、技术、艺术、自由职业。伤官配印或伤官生财为贵。忌伤官见官。'}
+  ];
+  var gjc=document.getElementById('geju-cards');
+  if(gjc){
+    gejuData.forEach(function(g){
+      var div=document.createElement('div');
+      div.style.cssText='border-left:4px solid '+g.color+';background:#fff;border:1px solid var(--border);border-left:4px solid '+g.color+';border-radius:10px;padding:14px;';
+      div.innerHTML='<div style="font-family:\'Noto Serif SC\',serif;font-weight:900;font-size:17px;color:'+g.color+';">'+g.name+'</div>'+
+        '<div style="font-size:12px;color:var(--muted);margin:6px 0;line-height:1.7;">'+g.desc+'</div>'+
+        '<div style="font-size:11px;color:var(--text);line-height:1.6;background:var(--accent-soft);padding:6px 10px;border-radius:6px;">'+g.suit+'</div>';
+      gjc.appendChild(div);
+    });
+  }
+
+  // ============ TAB 7: 智能排盘分析引擎 ============
+  var branches=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+  var branchEl={子:'水',丑:'土',寅:'木',卯:'木',辰:'土',巳:'火',午:'火',未:'土',申:'金',酉:'金',戌:'土',亥:'水'};
+  var hiddenStems={子:['癸'],丑:['己','癸','辛'],寅:['甲','丙','戊'],卯:['乙'],辰:['戊','乙','癸'],巳:['丙','庚','戊'],午:['丁','己'],未:['己','丁','乙'],申:['庚','壬','戊'],酉:['辛'],戌:['戊','辛','丁'],亥:['壬','甲']};
+  var hiddenLabel={子:['本气'],丑:['本气','中气','余气'],寅:['本气','中气','余气'],卯:['本气'],辰:['本气','中气','余气'],巳:['本气','中气','余气'],午:['本气','中气'],未:['本气','中气','余气'],申:['本气','中气','余气'],酉:['本气'],戌:['本气','中气','余气'],亥:['本气','中气']};
+  var luPos={甲:'寅',乙:'卯',丙:'巳',丁:'午',戊:'巳',己:'午',庚:'申',辛:'酉',壬:'亥',癸:'子'};
+  var renPos={甲:'卯',乙:'寅',丙:'午',丁:'巳',戊:'午',己:'巳',庚:'酉',辛:'申',壬:'子',癸:'亥'};
+  var tianyi={甲:['丑','未'],戊:['丑','未'],庚:['丑','未'],乙:['子','申'],己:['子','申'],丙:['亥','酉'],丁:['亥','酉'],壬:['卯','巳'],癸:['卯','巳'],辛:['午','寅']};
+  var wenchang={甲:'巳',乙:'午',丙:'申',丁:'酉',戊:'申',己:'酉',庚:'亥',辛:'子',壬:'寅',癸:'卯'};
+  var yimaGroup={申:'寅',子:'寅',辰:'寅',寅:'申',午:'申',戌:'申',巳:'亥',酉:'亥',丑:'亥',亥:'巳',卯:'巳',未:'巳'};
+  var taohuaGroup={申:'酉',子:'酉',辰:'酉',寅:'卯',午:'卯',戌:'卯',巳:'午',酉:'午',丑:'午',亥:'子',卯:'子',未:'子'};
+  var huagaiGroup={申:'辰',子:'辰',辰:'辰',寅:'戌',午:'戌',戌:'戌',巳:'丑',酉:'丑',丑:'丑',亥:'未',卯:'未',未:'未'};
+  var xunKong={子:['戌','亥'],戌:['申','酉'],申:['午','未'],午:['辰','巳'],辰:['寅','卯'],寅:['子','丑']};
+  var elName={木:'wood',火:'fire',土:'earth',金:'metal',水:'water'};
+  var elColor={木:'var(--wood)',火:'var(--fire)',土:'var(--earth)',金:'var(--metal)',水:'var(--water)'};
+
+  // 填充下拉框
+  function fillSelects(){
+    var sels=[['y-stem','m-stem','d-stem','h-stem'],['y-branch','m-branch','d-branch','h-branch']];
+    sels[0].forEach(function(id){var el=document.getElementById(id);if(!el)return;stems.forEach(function(s){var o=document.createElement('option');o.value=s;o.textContent=s;el.appendChild(o)});});
+    sels[1].forEach(function(id){var el=document.getElementById(id);if(!el)return;branches.forEach(function(b){var o=document.createElement('option');o.value=b;o.textContent=b;el.appendChild(o)});});
+    document.getElementById('d-stem').value='己';
+    document.getElementById('d-branch').value='未';
+    document.getElementById('y-stem').value='庚';document.getElementById('y-branch').value='午';
+    document.getElementById('m-stem').value='庚';document.getElementById('m-branch').value='辰';
+    document.getElementById('h-stem').value='庚';document.getElementById('h-branch').value='午';
+  }
+  fillSelects();
+
+  // 示例填充
+  var exBtn=document.getElementById('example-btn');
+  if(exBtn)exBtn.addEventListener('click',function(){
+    document.getElementById('y-stem').value='庚';document.getElementById('y-branch').value='午';
+    document.getElementById('m-stem').value='庚';document.getElementById('m-branch').value='辰';
+    document.getElementById('d-stem').value='己';document.getElementById('d-branch').value='未';
+    document.getElementById('h-stem').value='庚';document.getElementById('h-branch').value='午';
+  });
+
+  // 粘贴解析
+  var ppBtn=document.getElementById('parse-paste');
+  if(ppBtn)ppBtn.addEventListener('click',function(){
+    var txt=document.getElementById('paste-area').value;
+    var found=[];
+    var chars=txt.split('');
+    chars.forEach(function(c){if(stems.indexOf(c)>=0||branches.indexOf(c)>=0)found.push(c);});
+    // 尝试按天干4个+地支4个提取
+    var st=found.filter(function(c){return stems.indexOf(c)>=0});
+    var br=found.filter(function(c){return branches.indexOf(c)>=0});
+    if(st.length>=4&&br.length>=4){
+      document.getElementById('y-stem').value=st[0];document.getElementById('m-stem').value=st[1];
+      document.getElementById('d-stem').value=st[2];document.getElementById('h-stem').value=st[3];
+      document.getElementById('y-branch').value=br[0];document.getElementById('m-branch').value=br[1];
+      document.getElementById('d-branch').value=br[2];document.getElementById('h-branch').value=br[3];
+      alert('解析成功！已填入四柱：'+st[0]+br[0]+' '+st[1]+br[1]+' '+st[2]+br[2]+' '+st[3]+br[3]);
+    }else{
+      alert('未能识别，请检查格式。应包含4个天干+4个地支。');
+    }
+  });
+
+  // ===== 扩展神煞表 =====
+  var taiji={甲:['子','午'],乙:['子','午'],丙:['酉','卯'],丁:['酉','卯'],戊:['辰','戌','丑','未'],己:['辰','戌','丑','未'],庚:['寅','亥'],辛:['寅','亥'],壬:['巳','申'],癸:['巳','申']};
+  var tiande={寅:'丁',卯:'申',辰:'壬',巳:'辛',午:'亥',未:'甲',申:'癸',酉:'寅',戌:'丙',亥:'乙',子:'巳',丑:'庚'};
+  var yuede={寅:'丙',午:'丙',戌:'丙',申:'壬',子:'壬',辰:'壬',亥:'甲',卯:'甲',未:'甲',巳:'庚',酉:'庚',丑:'庚'};
+  var guoyin={甲:'戌',乙:'亥',丙:'丑',丁:'寅',戊:'丑',己:'寅',庚:'辰',辛:'巳',壬:'未',癸:'申'};
+  var jiangxing={寅:'午',午:'午',戌:'午',巳:'酉',酉:'酉',丑:'酉',申:'子',子:'子',辰:'子',亥:'卯',卯:'卯',未:'卯'};
+  var jinyu={甲:'辰',乙:'巳',丙:'未',丁:'申',戊:'未',己:'申',庚:'戌',辛:'亥',壬:'丑',癸:'寅'};
+  var hongluan={子:'卯',丑:'寅',寅:'丑',卯:'子',辰:'亥',巳:'戌',午:'酉',未:'申',申:'未',酉:'午',戌:'巳',亥:'辰'};
+  var tianxi={子:'酉',丑:'申',寅:'未',卯:'午',辰:'巳',巳:'辰',午:'卯',未:'寅',申:'丑',酉:'子',戌:'亥',亥:'戌'};
+  var guchen={亥:'寅',子:'寅',丑:'寅',寅:'巳',卯:'巳',辰:'巳',巳:'申',午:'申',未:'申',申:'亥',酉:'亥',戌:'亥'};
+  var guasu={亥:'戌',子:'戌',丑:'戌',寅:'丑',卯:'丑',辰:'丑',巳:'辰',午:'辰',未:'辰',申:'未',酉:'未',戌:'未'};
+  var sangmen={子:'寅',丑:'卯',寅:'辰',卯:'巳',辰:'午',巳:'未',午:'申',未:'酉',申:'戌',酉:'亥',戌:'子',亥:'丑'};
+  var diaoke={子:'戌',丑:'亥',寅:'子',卯:'丑',辰:'寅',巳:'卯',午:'辰',未:'巳',申:'午',酉:'未',戌:'申',亥:'酉'};
+  var jiesha={申:'巳',子:'巳',辰:'巳',亥:'申',卯:'申',未:'申',寅:'亥',午:'亥',戌:'亥',巳:'寅',酉:'寅',丑:'寅'};
+  var zaisha={申:'午',子:'午',辰:'午',亥:'酉',卯:'酉',未:'酉',寅:'子',午:'子',戌:'子',巳:'卯',酉:'卯',丑:'卯'};
+  var wangshen={申:'亥',子:'亥',辰:'亥',亥:'寅',卯:'寅',未:'寅',寅:'巳',午:'巳',戌:'巳',巳:'申',酉:'申',丑:'申'};
+  var tianyiDay={寅:'丑',卯:'寅',辰:'卯',巳:'辰',午:'巳',未:'午',申:'未',酉:'申',戌:'酉',亥:'戌',子:'亥',丑:'子'};
+  var shiEDaBai=['甲辰','乙巳','壬申','丙申','丁亥','庚辰','戊戌','癸亥','辛巳','己丑'];
+  var yinchayangcuo=['丙子','丁丑','戊寅','辛卯','壬辰','癸巳','丙午','丁未','戊申','辛酉','壬戌','癸亥'];
+  var guluan=['乙巳','丁巳','辛亥','戊申','壬寅','戊午','壬子','丙午'];
+  var kuigang=['庚辰','庚戌','壬辰','戊戌'];
+  var nayinPairs=[['甲','乙','子','丑','海中金'],['丙','丁','寅','卯','炉中火'],['戊','己','辰','巳','大林木'],['庚','辛','午','未','路旁土'],['壬','癸','申','酉','剑锋金'],['甲','乙','戌','亥','山头火'],['丙','丁','子','丑','涧下水'],['戊','己','寅','卯','城头土'],['庚','辛','辰','巳','白蜡金'],['壬','癸','午','未','杨柳木'],['甲','乙','申','酉','泉中水'],['丙','丁','戌','亥','屋上土'],['戊','己','子','丑','霹雳火'],['庚','辛','寅','卯','松柏木'],['壬','癸','辰','巳','长流水'],['甲','乙','午','未','沙中金'],['丙','丁','申','酉','山下火'],['戊','己','戌','亥','平地木'],['庚','辛','子','丑','壁上土'],['壬','癸','寅','卯','金箔金'],['甲','乙','辰','巳','覆灯火'],['丙','丁','午','未','天河水'],['戊','己','申','酉','大驿土'],['庚','辛','戌','亥','钗钏金'],['壬','癸','子','丑','桑柘木'],['甲','乙','寅','卯','大溪水'],['丙','丁','辰','巳','沙中土'],['戊','己','午','未','天上火'],['庚','辛','申','酉','石榴木'],['壬','癸','戌','亥','大海水']];
+  function getNayin(s,b){for(var i=0;i<nayinPairs.length;i++){var p=nayinPairs[i];if((s===p[0]||s===p[1])&&(b===p[2]||b===p[3]))return p[4];}return '';}
+
+  function findDizhiRelations(brArr){
+    var rels=[];
+    var liuhe={子:'丑',丑:'子',寅:'亥',亥:'寅',卯:'戌',戌:'卯',辰:'酉',酉:'辰',巳:'申',申:'巳',午:'未',未:'午'};
+    var liuchong={子:'午',午:'子',丑:'未',未:'丑',寅:'申',申:'寅',卯:'酉',酉:'卯',辰:'戌',戌:'辰',巳:'亥',亥:'巳'};
+    var liuhai={子:'未',未:'子',丑:'午',午:'丑',寅:'巳',巳:'寅',卯:'辰',辰:'卯',申:'亥',亥:'申',酉:'戌',戌:'酉'};
+    var liupo={子:'酉',酉:'子',丑:'辰',辰:'丑',寅:'亥',亥:'寅',卯:'午',午:'卯',巳:'申',申:'巳',未:'戌',戌:'未'};
+    var sanheGroups=[['申','子','辰','水'],['亥','卯','未','木'],['寅','午','戌','火'],['巳','酉','丑','金']];
+    var sanhuiGroups=[['寅','卯','辰','木'],['巳','午','未','火'],['申','酉','戌','金'],['亥','子','丑','水']];
+    var found={};
+    for(var i=0;i<4;i++){for(var j=i+1;j<4;j++){
+      var a=brArr[i],b=brArr[j],key=a+b;
+      if(liuhe[a]===b&&!found['h'+key]){rels.push({type:'六合',text:a+'与'+b+'合',good:true});found['h'+key]=1;}
+      if(liuchong[a]===b&&!found['c'+key]){rels.push({type:'六冲',text:a+'与'+b+'冲',good:false});found['c'+key]=1;}
+      if(liuhai[a]===b&&!found['h2'+key]){rels.push({type:'六害',text:a+'与'+b+'害',good:false});found['h2'+key]=1;}
+      if(liupo[a]===b&&!found['p'+key]){rels.push({type:'相破',text:a+'与'+b+'破',good:false});found['p'+key]=1;}
+    }}
+    ['辰','午','酉','亥'].forEach(function(x){if(brArr.indexOf(x)!==brArr.lastIndexOf(x))rels.push({type:'自刑',text:x+x+'自刑',good:false});});
+    if(brArr.indexOf('子')>=0&&brArr.indexOf('卯')>=0)rels.push({type:'三刑',text:'子卯无礼之刑',good:false});
+    if(['寅','巳','申'].every(function(x){return brArr.indexOf(x)>=0;}))rels.push({type:'三刑',text:'寅巳申三刑',good:false});
+    if(['丑','戌','未'].every(function(x){return brArr.indexOf(x)>=0;}))rels.push({type:'三刑',text:'丑戌未三刑',good:false});
+    sanheGroups.forEach(function(g){
+      var cnt=g.slice(0,3).filter(function(x){return brArr.indexOf(x)>=0;}).length;
+      if(cnt===3)rels.push({type:'三合局',text:g[0]+g[1]+g[2]+'合'+g[3]+'局',good:true});
+      else if(cnt===2){var present=g.slice(0,3).filter(function(x){return brArr.indexOf(x)>=0;}).join('');rels.push({type:'半合/拱',text:present+'拱'+g[3]+'气',good:true});}
+    });
+    sanhuiGroups.forEach(function(g){
+      if(g.slice(0,3).every(function(x){return brArr.indexOf(x)>=0;}))rels.push({type:'三会方',text:g[0]+g[1]+g[2]+'会'+g[3]+'方(力量最强)',good:true});
+    });
+    return rels;
+  }
+  function findTianganRelations(stArr){
+    var rels=[];
+    var wuhe={甲:'己',己:'甲',乙:'庚',庚:'乙',丙:'辛',辛:'丙',丁:'壬',壬:'丁',戊:'癸',癸:'戊'};
+    var xiangchong={甲:'庚',庚:'甲',乙:'辛',辛:'乙',丙:'壬',壬:'丙',丁:'癸',癸:'丁'};
+    for(var i=0;i<4;i++){for(var j=i+1;j<4;j++){
+      var a=stArr[i],b=stArr[j];
+      if(wuhe[a]===b)rels.push({type:'五合',text:a+'与'+b+'合',good:true});
+      if(xiangchong[a]===b)rels.push({type:'相冲',text:a+'与'+b+'冲',good:false});
+    }}
+    return rels;
+  }
+
+  // 主分析函数（增强版：年度运程指数+细分房地产+人生细节）
+  var anBtn=document.getElementById('analyze-btn');
+  if(anBtn)anBtn.addEventListener('click',function(){
+    var ys=document.getElementById('y-stem').value, yb=document.getElementById('y-branch').value;
+    var ms=document.getElementById('m-stem').value, mb=document.getElementById('m-branch').value;
+    var ds=document.getElementById('d-stem').value, db=document.getElementById('d-branch').value;
+    var hs=document.getElementById('h-stem').value, hb=document.getElementById('h-branch').value;
+    var gender=document.querySelector('input[name="gender"]:checked').value;
+    var dayMaster=ds;
+    var pillarNames=['年柱','月柱','日柱','时柱'];
+    var stemArr=[ys,ms,ds,hs], branchArr=[yb,mb,db,hb];
+    var dmEl=stemEl[dayMaster];
+    var touStems=[ys,ms,hs];
+
+    var stemGods=stemArr.map(function(s){return getGod(dayMaster,s);});
+    var branchGods=branchArr.map(function(b){
+      return hiddenStems[b].map(function(hs2){return {stem:hs2,god:getGod(dayMaster,hs2)};});
+    });
+
+    var monthHidden=hiddenStems[mb], pattern='', patternGod='';
+    if(mb===luPos[dayMaster]){pattern='建禄格';patternGod='建禄';}
+    else if(mb===renPos[dayMaster]){pattern='月刃格';patternGod='月刃';}
+    else{
+      for(var i=0;i<monthHidden.length;i++){
+        if(touStems.indexOf(monthHidden[i])>=0){patternGod=getGod(dayMaster,monthHidden[i]);pattern=patternGod+'格';break;}
+      }
+      if(!pattern){patternGod=getGod(dayMaster,monthHidden[0]);pattern=patternGod+'格(月令本气未透)';}
+    }
+
+    var score=0, mbEl=branchEl[mb];
+    if(mbEl===dmEl||shengWo[dmEl]===mbEl) score+=2; else score-=1;
+    if(monthHidden.indexOf(dayMaster)>=0) score+=1;
+    branchArr.forEach(function(b){
+      if(hiddenStems[b].indexOf(dayMaster)>=0) score+=1;
+      if(b===luPos[dayMaster]) score+=1;
+      if(b===renPos[dayMaster]) score+=1;
+    });
+    touStems.forEach(function(s){
+      if(stemEl[s]===dmEl||shengWo[dmEl]===stemEl[s]) score+=1;
+    });
+    var strength=score>=5?'身强':(score<=1?'身弱':'中和');
+    var strengthNote=score>=5?'日主偏强，喜克泄耗':(score<=1?'日主偏弱，喜生扶':'日主中和，细看组合');
+
+    var usefulEl, tabooEl;
+    if(patternGod==='伤官'||patternGod==='食神'){usefulEl=ke[dmEl];tabooEl=shengWo[dmEl];}
+    else if(patternGod==='正官'||patternGod==='七杀'){usefulEl=strength==='身弱'?shengWo[dmEl]:ke[dmEl];tabooEl=dmEl;}
+    else if(patternGod==='正印'||patternGod==='偏印'){usefulEl=ke[dmEl];tabooEl=shengWo[dmEl];}
+    else if(patternGod==='正财'||patternGod==='偏财'){usefulEl=sheng[dmEl];tabooEl=dmEl;}
+    else{usefulEl=strength==='身弱'?shengWo[dmEl]:ke[dmEl];tabooEl=strength==='身弱'?keWo[dmEl]:shengWo[dmEl];}
+
+    var ss=[];
+    function addSS(name,pillar,good){if(!ss.some(function(x){return x.name===name&&x.pillar===pillar;}))ss.push({name:name,pillar:pillar,good:good});}
+    (tianyi[dayMaster]||[]).forEach(function(b){var idx=branchArr.indexOf(b);if(idx>=0)addSS('天乙贵人',pillarNames[idx],true);});
+    (taiji[dayMaster]||[]).forEach(function(b){var idx=branchArr.indexOf(b);if(idx>=0)addSS('太极贵人',pillarNames[idx],true);});
+    var td=tiande[mb];if(stemArr.indexOf(td)>=0)addSS('天德贵人','天干透'+td,true);
+    var yd=yuede[mb];if(stemArr.indexOf(yd)>=0)addSS('月德贵人','天干透'+yd,true);
+    var wc=wenchang[dayMaster];var iw=branchArr.indexOf(wc);if(iw>=0)addSS('文昌贵人',pillarNames[iw],true);
+    var gy=guoyin[dayMaster];var ig=branchArr.indexOf(gy);if(ig>=0)addSS('国印贵人',pillarNames[ig],true);
+    [yb,db].forEach(function(b){
+      var iy=branchArr.indexOf(yimaGroup[b]);if(iy>=0)addSS('驿马',pillarNames[iy],true);
+      var it=branchArr.indexOf(taohuaGroup[b]);if(it>=0)addSS('桃花',pillarNames[it],true);
+      var ih=branchArr.indexOf(huagaiGroup[b]);if(ih>=0)addSS('华盖',pillarNames[ih],true);
+      var ij=branchArr.indexOf(jiangxing[b]);if(ij>=0)addSS('将星',pillarNames[ij],true);
+    });
+    var jy=jinyu[dayMaster];var ijy=branchArr.indexOf(jy);if(ijy>=0)addSS('金舆',pillarNames[ijy],true);
+    var hl=hongluan[yb];var ihl=branchArr.indexOf(hl);if(ihl>=0)addSS('红鸾',pillarNames[ihl],true);
+    var tx=tianxi[yb];var itx=branchArr.indexOf(tx);if(itx>=0)addSS('天喜',pillarNames[itx],true);
+    var il=branchArr.indexOf(luPos[dayMaster]);if(il>=0)addSS('禄神',pillarNames[il],true);
+    var ir=branchArr.indexOf(renPos[dayMaster]);if(ir>=0)addSS('羊刃',pillarNames[ir],false);
+    var igc=branchArr.indexOf(guchen[yb]);if(igc>=0)addSS('孤辰',pillarNames[igc],false);
+    var igs=branchArr.indexOf(guasu[yb]);if(igs>=0)addSS('寡宿',pillarNames[igs],false);
+    var ism=branchArr.indexOf(sangmen[yb]);if(ism>=0)addSS('丧门',pillarNames[ism],false);
+    var idk=branchArr.indexOf(diaoke[yb]);if(idk>=0)addSS('吊客',pillarNames[idk],false);
+    var ijs=branchArr.indexOf(jiesha[yb]);if(ijs>=0)addSS('劫煞',pillarNames[ijs],false);
+    var izs=branchArr.indexOf(zaisha[yb]);if(izs>=0)addSS('灾煞',pillarNames[izs],false);
+    var iws=branchArr.indexOf(wangshen[yb]);if(iws>=0)addSS('亡神',pillarNames[iws],false);
+    var ity=branchArr.indexOf(tianyiDay[mb]);if(ity>=0)addSS('天医',pillarNames[ity],true);
+    var dayPillar=ds+db;
+    if(shiEDaBai.indexOf(dayPillar)>=0)addSS('十恶大败','日柱',false);
+    if(yinchayangcuo.indexOf(dayPillar)>=0)addSS('阴差阳错','日柱',false);
+    if(guluan.indexOf(dayPillar)>=0)addSS('孤鸾煞','日柱',false);
+    if(kuigang.indexOf(dayPillar)>=0)addSS('魁罡','日柱',true);
+    for(var pi=0;pi<4;pi++){
+      var sIdx=stems.indexOf(stemArr[pi]),bIdx=branches.indexOf(branchArr[pi]);
+      var xfb=branches[(bIdx-sIdx+12)%12];
+      (xunKong[xfb]||[]).forEach(function(b){
+        var bi=branchArr.indexOf(b);
+        if(bi>=0&&bi!==pi)addSS('空亡('+pillarNames[pi]+'查)',pillarNames[bi],false);
+      });
+    }
+
+    var tgRel=findTianganRelations(stemArr);
+    var dzRel=findDizhiRelations(branchArr);
+
+    var yangYear=stemYY[ys]==='阳';
+    var shun=(yangYear&&gender==='male')||(!yangYear&&gender==='female');
+    var mStemIdx=stems.indexOf(ms),mBranchIdx=branches.indexOf(mb);
+    var dayun=[];
+    for(i=1;i<=9;i++){
+      var si=shun?(mStemIdx+i)%10:((mStemIdx-i)%10+10)%10;
+      var bi=shun?(mBranchIdx+i)%12:((mBranchIdx-i)%12+12)%12;
+      dayun.push({stem:stems[si],branch:branches[bi],god:getGod(dayMaster,stems[si]),age:(5+(i-1)*10)+'-'+(14+(i-1)*10)+'岁'});
+    }
+
+    var godCount={};
+    stemGods.concat(branchGods.flat().map(function(x){return x.god;})).forEach(function(g){godCount[g]=(godCount[g]||0)+1;});
+    var shishang=(godCount['食神']||0)+(godCount['伤官']||0);
+    var caixing=(godCount['正财']||0)+(godCount['偏财']||0);
+    var bijie=(godCount['比肩']||0)+(godCount['劫财']||0);
+    var guansha=(godCount['正官']||0)+(godCount['七杀']||0);
+    var yinxing=(godCount['正印']||0)+(godCount['偏印']||0);
+
+    // 五行计数（天干+地支本气）
+    var elCount={木:0,火:0,土:0,金:0,水:0};
+    stemArr.forEach(function(s){elCount[stemEl[s]]++;});
+    branchArr.forEach(function(b){elCount[branchEl[b]]++;});
+    var tuCount=elCount['土'];
+    var sikuCount=branchArr.filter(function(b){return ['辰','戌','丑','未'].indexOf(b)>=0;}).length;
+    var hasYima=ss.some(function(s){return s.name==='驿马';});
+    var hasKongwangYin=ss.some(function(s){return s.name.indexOf('空亡')>=0;});
+    var caikuChong=dzRel.some(function(r){return r.type==='六冲'&&(r.text.indexOf('辰')>=0||r.text.indexOf('戌')>=0||r.text.indexOf('丑')>=0||r.text.indexOf('未')>=0);});
+
+    // ===== 年度运程指数（2024-2033）=====
+    var liunian=[['2024','甲','辰'],['2025','乙','巳'],['2026','丙','午'],['2027','丁','未'],['2028','戊','申'],['2029','己','酉'],['2030','庚','戌'],['2031','辛','亥'],['2032','壬','子'],['2033','癸','丑']];
+    function elScore(el){
+      if(el===usefulEl) return 1.0;
+      if(sheng[el]===usefulEl||shengWo[usefulEl]===el) return 0.7; // 生用神
+      if(el===tabooEl) return 0.2;
+      if(ke[el]===usefulEl) return 0.3; // 克用神
+      return 0.5;
+    }
+    var yearlyData=liunian.map(function(l){
+      var yr=l[0], yStem=l[1], yBranch=l[2];
+      var yGod=getGod(dayMaster,yStem);
+      var yStemEl=stemEl[yStem], yBranchEl=branchEl[yBranch];
+      var s=Math.round(35*elScore(yStemEl)+30*elScore(yBranchEl)+15);
+      // 流年与命局地支关系
+      var relNote=[];
+      branchArr.forEach(function(b,bi){
+        var lc={子:'午',丑:'未',寅:'申',卯:'酉',辰:'戌',巳:'亥',午:'子',未:'丑',申:'寅',酉:'卯',戌:'辰',亥:'巳'};
+        var lh={子:'丑',丑:'子',寅:'亥',亥:'寅',卯:'戌',戌:'卯',辰:'酉',酉:'辰',巳:'申',申:'巳',午:'未',未:'午'};
+        if(lc[yBranch]===b){
+          relNote.push('流年'+yBranch+'冲'+pillarNames[bi]+b);
+          if(branchEl[b]===usefulEl) s-=15; else if(branchEl[b]===tabooEl) s+=10;
+        }
+        if(lh[yBranch]===b){relNote.push('流年'+yBranch+'合'+pillarNames[bi]+b); s+=5;}
+      });
+      // 流年十神吉凶
+      var goodGods=['正官','正财','食神','正印'];
+      var badGods=['七杀','伤官','劫财','偏印'];
+      if(goodGods.indexOf(yGod)>=0) s+=5;
+      if(badGods.indexOf(yGod)>=0) s-=3;
+      s=Math.max(8,Math.min(95,s));
+      // 年度具体建议
+      var careerNote, wealthNote, loveNote, healthNote;
+      if(s>=80){careerNote='事业上升期，有晋升/拓展机会，宜主动出击';wealthNote='财运亨通，可投资可进取';}
+      else if(s>=65){careerNote='事业平稳向上，把握机会但不宜冒进';wealthNote='财运尚可，稳健理财';}
+      else if(s>=50){careerNote='事业平稳，守成为主，避免大变动';wealthNote='财运一般，量入为出';}
+      else if(s>=35){careerNote='事业压力较大，易遇阻碍/小人，宜低调忍耐';wealthNote='财运欠佳，忌投资投机，守财为上';}
+      else{careerNote='事业低谷，易有变动/挫折，宜蛰伏学习';wealthNote='财运差，严防破财，忌借贷担保';}
+      if(yGod==='正官'||yGod==='七杀'){careerNote+='；官杀年：压力与权力并存，注意与上级关系';}
+      if(yGod==='正财'||yGod==='偏财'){wealthNote+='；财星年：收入机会多，但比劫年防分财';}
+      if(yGod==='伤官'){careerNote+='；伤官年：才华发挥但易得罪人，慎言';}
+      if(yGod==='食神'){careerNote+='；食神年：享受、创作、学习运佳';}
+      if(relNote.length>0){
+        if(relNote.some(function(r){return r.indexOf('冲')>=0;})){
+          loveNote='感情易有波动（逢冲），多沟通';healthNote='注意健康，防意外';
+        }else{loveNote='感情稳定，有合则人缘佳';healthNote='健康平稳';}
+      }else{loveNote='感情平稳';healthNote='健康无大碍，常规保养';}
+      return {year:yr,stem:yStem,branch:yBranch,god:yGod,score:s,rel:relNote.join('、'),career:careerNote,wealth:wealthNote,love:loveNote,health:healthNote};
+    });
+
+    var out=document.getElementById('analysis-output');
+    var html='';
+
+    // ===== 命局总览 =====
+    html+='<div style="background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:0 4px 20px rgba(180,83,9,.1)">';
+    html+='<div style="font-family:\'Noto Serif SC\',serif;font-weight:900;font-size:18px;margin-bottom:14px;color:var(--accent)">命局总览 · '+dayMaster+'日主 · '+(gender==='male'?'乾造':'坤造')+'</div>';
+    html+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">';
+    for(i=0;i<4;i++){
+      var gcC=elColor[stemEl[stemArr[i]]],bcC=elColor[branchEl[branchArr[i]]];
+      html+='<div style="text-align:center;border:1px solid var(--border);border-radius:10px;padding:10px;background:#fff'+(i===2?';border:2px solid var(--accent);background:var(--accent-soft)':'')+'">';
+      html+='<div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600">'+pillarNames[i]+'</div>';
+      html+='<div style="font-size:10px;color:var(--muted)">'+stemGods[i]+'</div>';
+      html+='<div style="font-size:24px;font-weight:900;color:'+gcC+';font-family:\'Noto Serif SC\',serif;line-height:1.2">'+stemArr[i]+'</div>';
+      html+='<div style="font-size:24px;font-weight:900;color:'+bcC+';font-family:\'Noto Serif SC\',serif;line-height:1.2;margin-top:2px">'+branchArr[i]+'</div>';
+      html+='<div style="font-size:10px;color:var(--muted);line-height:1.5;margin-top:4px">'+branchGods[i].map(function(x){return x.stem+'·'+x.god;}).join('<br>')+'</div>';
+      html+='<div style="font-size:9px;color:var(--muted);margin-top:4px;border-top:1px dashed var(--border);padding-top:3px">'+getNayin(stemArr[i],branchArr[i])+'</div>';
+      html+='</div>';
+    }
+    html+='</div>';
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;font-size:13px">';
+    html+='<div style="background:var(--accent-soft);padding:10px;border-radius:8px"><strong>日主：</strong>'+dayMaster+'('+stemYY[dayMaster]+dmEl+')</div>';
+    html+='<div style="background:var(--accent2-soft);padding:10px;border-radius:8px"><strong>格局：</strong>'+pattern+'</div>';
+    html+='<div style="background:rgba(45,122,62,.08);padding:10px;border-radius:8px"><strong>旺衰：</strong>'+strength+'<br><span style="font-size:11px;color:var(--muted)">'+strengthNote+'</span></div>';
+    html+='<div style="background:rgba(192,57,43,.06);padding:10px;border-radius:8px"><strong>喜用：</strong><span style="color:'+elColor[usefulEl]+';font-weight:700">'+usefulEl+'</span>　<strong>忌：</strong><span style="color:'+elColor[tabooEl]+';font-weight:700">'+tabooEl+'</span></div>';
+    html+='</div></div>';
+
+    // ===== 性格深度分析（新增）=====
+    var personality='';
+    personality+=dayMaster+'日主人的底色：'+(dayMaster==='甲'?'参天大树，正直有领导力，固执不服输':dayMaster==='乙'?'花草藤蔓，柔顺聪慧，善适应依附':dayMaster==='丙'?'太阳烈火，热情奔放，光明急躁':dayMaster==='丁'?'烛火灯火，文雅内敛，细腻温暖':dayMaster==='戊'?'高山厚土，稳重厚道，包容固执':dayMaster==='己'?'田园沃土，谦和细致，务实内敛':dayMaster==='庚'?'刀剑钢铁，果断刚毅，霸气好胜':dayMaster==='辛'?'珠宝金饰，精致敏锐，完美主义':dayMaster==='壬'?'江河大海，智慧流动，包容多变':'雨露甘泉，深沉内敛，敏感温柔')+'。';
+    if(shishang>=3) personality+='食伤旺极，聪明外露、表达欲强、创意丰富，但易傲气、不耐烦约束。';
+    else if(shishang>=1) personality+='食伤透出，有才华、懂享受、表达能力佳。';
+    if(guansha>=3) personality+='官杀旺，自律性强、有责任感、但压力大、易焦虑。';
+    else if(guansha>=1) personality+='官杀透出，有规矩、有上进心。';
+    if(caixing>=3) personality+='财星旺，现实、重视物质、人缘好、善于经营。';
+    if(bijie>=3) personality+='比劫旺，独立自信、行动力强，但易冲动、好竞争、钱财易被分。';
+    if(yinxing>=3) personality+='印星旺，好学、善良、依赖心重、喜安稳。';
+    if(ss.some(function(s){return s.name==='华盖';})) personality+='带华盖，有艺术/玄学天赋，喜独处思考。';
+    if(ss.some(function(s){return s.name==='桃花';})) personality+='带桃花，人缘佳、有魅力、异性缘好。';
+    if(ss.some(function(s){return s.name==='羊刃';})) personality+='带羊刃，性格刚烈、脾气急、易冲动。';
+    if(ss.some(function(s){return s.name==='魁罡';})) personality+='日坐魁罡，刚毅果断、有权威，适合管理武职。';
+    html+='<div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden"><div class="acc-header" style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)"><span style="font-family:\'Noto Serif SC\',serif;font-weight:700;font-size:15px">性格深度分析</span><span class="acc-arrow" style="color:var(--accent);font-size:14px">▼</span></div><div class="acc-content"><div style="padding:16px;font-size:13px;line-height:2">'+personality+'</div></div></div>';
+
+    // ===== 格局用神解读 =====
+    var patternExplain={
+      '伤官':'伤官泄秀，聪明傲气、才华横溢，喜财星流通(伤官生财)，忌印星夺食、忌见官(伤官见官为祸百端)。',
+      '食神':'食神温厚，福禄寿全，喜生财，忌枭神(偏印)夺食。',
+      '正官':'正官端正，贵气在身，喜财生官、印护官，忌伤官克官、忌七杀混杂。',
+      '七杀':'七杀刚猛，压力与权力并存，喜食神制杀、印星化杀，忌杀无制攻身。',
+      '正财':'正财稳定，勤劳致富，喜食伤生财、官星护财，忌比劫夺财。',
+      '偏财':'偏财流动，人缘广、投资眼光好，喜食伤生财，忌比劫分夺。',
+      '正印':'正印仁慈，学识贵人，喜财星破印(印旺需财)，忌官杀再生印过旺。',
+      '偏印':'偏印独特，偏门技艺、玄学天赋，喜财制枭，忌枭神夺食。',
+      '建禄':'建禄身强，白手起家，喜财官食伤，忌再行比劫。',
+      '月刃':'月刃刚烈，需官杀制刃，喜财生官，忌比劫再会。'
+    };
+    var pe=patternExplain[patternGod]||'需结合具体组合细论。';
+    html+='<div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden"><div class="acc-header" style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)"><span style="font-family:\'Noto Serif SC\',serif;font-weight:700;font-size:15px">格局与用神深度解读</span><span class="acc-arrow" style="color:var(--accent);font-size:14px">▼</span></div><div class="acc-content"><div style="padding:16px;font-size:13px;line-height:2">';
+    html+='<p style="margin:0 0 8px"><strong>格局怎么来的：</strong>月令'+mb+'藏干'+monthHidden.join('、')+'，天干透出'+touStems.filter(function(s){return monthHidden.indexOf(s)>=0;}).join('、')+'，故取<strong style="color:var(--accent)">'+pattern+'</strong>。</p>';
+    html+='<p style="margin:0 0 8px"><strong>十神力量(含藏干)：</strong>食伤×'+shishang+' · 财星×'+caixing+' · 官杀×'+guansha+' · 印星×'+yinxing+' · 比劫×'+bijie+'</p>';
+    html+='<p style="margin:0 0 8px"><strong>五行分布：</strong>木×'+elCount['木']+' 火×'+elCount['火']+' 土×'+elCount['土']+' 金×'+elCount['金']+' 水×'+elCount['水']+'</p>';
+    html+='<p style="margin:0 0 8px;background:var(--accent-soft);padding:10px;border-radius:8px"><strong style="color:var(--accent)">'+patternGod+'格特点：</strong>'+pe+'</p>';
+    html+='<p style="margin:0"><strong>用神取'+usefulEl+'：</strong>'+strength+'之命，'+patternGod+'格，取'+usefulEl+'为用，忌'+tabooEl+'。</p>';
+    html+='</div></div></div>';
+
+    // ===== 天干地支关系 =====
+    html+='<div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden"><div class="acc-header" style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)"><span style="font-family:\'Noto Serif SC\',serif;font-weight:700;font-size:15px">天干关系 · 地支关系(刑冲会合)</span><span class="acc-arrow" style="color:var(--accent);font-size:14px">▼</span></div><div class="acc-content"><div style="padding:16px">';
+    html+='<div style="font-size:13px;margin-bottom:10px"><strong>天干：</strong>'+(tgRel.length?tgRel.map(function(r){var c=r.good?'var(--wood)':'var(--fire)';return '<span class="pill" style="background:'+c+'18;color:'+c+';border:1px solid '+c+'">'+r.text+'</span>';}).join(' '):'无明显合冲')+'</div>';
+    html+='<div style="font-size:13px"><strong>地支：</strong>'+(dzRel.length?dzRel.map(function(r){var c=r.good?'var(--wood)':'var(--fire)';return '<span class="pill" style="background:'+c+'18;color:'+c+';border:1px solid '+c+'">'+r.text+'</span>';}).join(' '):'无明显刑冲合害')+'</div>';
+    if(dzRel.some(function(r){return !r.good;})){
+      html+='<div style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.8;background:rgba(192,57,43,.05);padding:8px 12px;border-radius:6px">命局存在冲/刑/害，主人生多变动。冲忌神反为吉，冲喜神则为凶。</div>';
+    }
+    html+='</div></div></div>';
+
+    // ===== 神煞 =====
+    html+='<div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden"><div class="acc-header" style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)"><span style="font-family:\'Noto Serif SC\',serif;font-weight:700;font-size:15px">神煞('+ss.length+'个，吉神'+ss.filter(function(s){return s.good;}).length+'·凶煞'+ss.filter(function(s){return !s.good;}).length+')</span><span class="acc-arrow" style="color:var(--accent);font-size:14px">▼</span></div><div class="acc-content"><div style="padding:16px">';
+    html+='<div style="display:flex;flex-wrap:wrap;gap:6px">';
+    ss.forEach(function(s){var c=s.good?'var(--wood)':'var(--fire)';html+='<span class="pill" style="background:'+c+'15;color:'+c+';border:1px solid '+c+';font-size:11px;padding:3px 10px">'+s.name+'·'+s.pillar+'</span>';});
+    html+='</div></div></div></div>';
+
+    // ===== 大运 =====
+    html+='<div class="acc-item" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden"><div class="acc-header" style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)"><span style="font-family:\'Noto Serif SC\',serif;font-weight:700;font-size:15px">大运走势('+(shun?'顺排':'逆排')+'，约5岁起运)+人生阶段</span><span class="acc-arrow" style="color:var(--accent);font-size:14px">▼</span></div><div class="acc-content"><div style="padding:16px">';
+    html+='<div class="scroll-x" style="margin-bottom:14px"><table><tr><th>年龄段</th><th>大运</th><th>十神</th><th>五行</th><th>运势</th><th>人生阶段</th></tr>';
+    var stageNames=['少年求学','青年起步','成家立业','中年鼎盛','中年收获','知天命','晚年安稳','颐养天年','耄耋之年'];
+    dayun.forEach(function(d,di){
+      var dEl=stemEl[d.stem];
+      var tag=(dEl===usefulEl)?'★用神·吉':(dEl===tabooEl?'✗忌神·守':'平稳');
+      var col=(dEl===usefulEl)?'var(--wood)':(dEl===tabooEl?'var(--fire)':'var(--muted)');
+      html+='<tr><td>'+d.age+'</td><td style="font-weight:700;font-family:\'Noto Serif SC\',serif;font-size:15px">'+d.stem+d.branch+'</td><td>'+d.god+'</td><td style="color:'+elColor[dEl]+';font-weight:600">'+dEl+'</td><td style="color:'+col+';font-weight:600">'+tag+'</td><td style="font-size:12px;color:var(--muted)">'+(stageNames[di]||'')+'</td></tr>';
+    });
+    html+='</table></div>';
+    // 人生阶段叙事
+    html+='<div style="font-size:13px;line-height:2;background:var(--accent2-soft);padding:12px;border-radius:8px"><strong style="color:var(--accent2)">人生阶段叙事：</strong><br>';
+    html+='· 少年(5-14岁)走'+dayun[0].stem+dayun[0].branch+'('+dayun[0].god+')运：'+(stemEl[dayun[0].stem]===usefulEl?'少年得志，学业优异。':'少年平平，需努力。')+'<br>';
+    html+='· 青年(15-24岁)走'+dayun[1].stem+dayun[1].branch+'('+dayun[1].god+')运：'+(stemEl[dayun[1].stem]===usefulEl?'青年起步顺利，事业感情双丰收。':'青年多磨砺，积累经验。')+'<br>';
+    html+='· 中年(25-44岁)走'+dayun[2].stem+dayun[2].branch+'、'+dayun[3].stem+dayun[3].branch+'运：'+((stemEl[dayun[2].stem]===usefulEl||stemEl[dayun[3].stem]===usefulEl)?'中年黄金期，事业财富双丰收。':'中年平稳，宜守成。')+'<br>';
+    html+='· 晚年(55岁后)走'+dayun[5].stem+dayun[5].branch+'、'+dayun[6].stem+dayun[6].branch+'运：'+((stemEl[dayun[5].stem]===usefulEl||stemEl[dayun[6].stem]===usefulEl)?'晚年享福，子女有靠。':'晚年宜静养。');
+    html+='</div></div></div>';
+
+    // ===== 年度运程指数（核心新增）=====
+    html+='<div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden"><div class="acc-header" style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)"><span style="font-family:\'Noto Serif SC\',serif;font-weight:700;font-size:15px">近十年运程指数(2024-2033)·每年事业财运感情健康详解</span><span class="acc-arrow" style="color:var(--accent);font-size:14px">▼</span></div><div class="acc-content"><div style="padding:16px">';
+    yearlyData.forEach(function(y){
+      var barColor=y.score>=80?'var(--wood)':(y.score>=65?'#b8860b':(y.score>=50?'var(--accent2)':(y.score>=35?'var(--accent)':'var(--fire)')));
+      var label=y.score>=80?'大吉':(y.score>=65?'吉':(y.score>=50?'平':(y.score>=35?'小凶':'凶')));
+      html+='<div style="margin-bottom:14px;padding:12px;border:1px solid var(--border);border-radius:10px;background:#fff">';
+      html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">';
+      html+='<span style="font-weight:700;font-family:\'Noto Serif SC\',serif;font-size:15px">'+y.year+'年 '+y.stem+y.branch+' <span style="font-size:12px;color:var(--muted);font-weight:400">('+y.god+')</span></span>';
+      html+='<span style="font-weight:900;color:'+barColor+';font-size:18px">'+y.score+'分 <span style="font-size:12px;font-weight:600">'+label+'</span></span>';
+      html+='</div>';
+      html+='<div style="height:8px;background:#eee;border-radius:4px;overflow:hidden;margin-bottom:8px"><div style="height:100%;width:'+y.score+'%;background:'+barColor+';border-radius:4px;transition:width .5s"></div></div>';
+      if(y.rel) html+='<div style="font-size:11px;color:var(--fire);margin-bottom:4px">⚠ '+y.rel+'</div>';
+      html+='<div style="font-size:12px;line-height:1.8;color:var(--text)">';
+      html+='<strong>事业：</strong>'+y.career+'<br>';
+      html+='<strong>财运：</strong>'+y.wealth+'<br>';
+      html+='<strong>感情：</strong>'+y.love+'　<strong>健康：</strong>'+y.health;
+      html+='</div></div>';
+    });
+    html+='</div></div></div>';
+
+    // ===== 人生各领域（增强版）=====
+    html+='<div class="acc-item open" style="background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden"><div class="acc-header" style="padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--accent-soft),transparent)"><span style="font-family:\'Noto Serif SC\',serif;font-weight:700;font-size:15px">人生各领域综合解读</span><span class="acc-arrow" style="color:var(--accent);font-size:14px">▼</span></div><div class="acc-content"><div style="padding:16px;font-size:13px;line-height:1.9">';
+
+    // 事业（更细）
+    var indMap={木:'教育、出版、文化、林业、服装、医药、素食',火:'能源、餐饮、娱乐、互联网、电子、美容、广告',土:'房地产、建筑、农业、陶瓷、咨询、保险、仓储',金:'金融、机械、IT硬件、法律、汽车、珠宝、外科',水:'贸易、物流、旅游、水产、传媒、饮品、咨询'};
+    var career='';
+    if(shishang>=3){career='<strong>食伤旺极(×'+shishang+')，才华横溢型。</strong>天生表达力创造力强，靠才华吃饭。'+(caixing>=1?'有财星流通(食伤生财)，才华能变现，<strong style="color:var(--accent)">非常适合创业、自由职业、技术/内容/艺术</strong>。':'财星不显，才华易孤芳自赏，需主动找市场。')+'行业首选'+indMap[usefulEl]+'。有利方位：'+(usefulEl==='木'?'东方':usefulEl==='火'?'南方':usefulEl==='土'?'本地/中央':usefulEl==='金'?'西方':'北方')+'。'+(strength==='身弱'?'注意：身弱食伤旺泄身过度，不宜单打独斗，宜借平台。':'');}
+    else if(guansha>=2&&yinxing>=1){career='<strong>官印相生，仕途管理型。</strong>适合公职、大企业、管理层。行业首选'+indMap[usefulEl]+'。';}
+    else if(caixing>=2&&shishang>=1){career='<strong>食伤生财，经商创业型。</strong>有赚钱头脑，适合贸易、销售、投资。行业首选'+indMap[usefulEl]+'。';}
+    else if(patternGod==='正官'||patternGod==='七杀'){career='<strong>'+patternGod+'格，权威管理型。</strong>适合体制内、管理层、军警法律。行业首选'+indMap[usefulEl]+'。'+(strength==='身弱'?'身弱官杀旺，压力大，宜用印化杀，不宜创业。':'');}
+    else{career='<strong>综合型。</strong>'+pattern+'，用神'+usefulEl+'。行业：'+indMap[usefulEl]+'。'+(strength==='身强'?'身强可担重任，宜挑战高薪或创业。':'身弱宜求稳，先在大平台积累。');}
+    if(bijie>=3) career+='<br><strong style="color:var(--fire)">注意：</strong>比劫旺(×'+bijie+')，不宜合伙、不宜担保，钱财易被分夺，需独立经营。';
+    html+='<div style="margin-bottom:12px;padding:12px;background:var(--accent2-soft);border-radius:8px"><strong style="color:var(--accent2)">【事业·行业·打工vs创业】</strong><br>'+career+'</div>';
+
+    // 财富（更细）
+    var wealth='';
+    if(strength==='身强'&&caixing>=2&&shishang>=2){wealth='<strong style="color:#b8860b">富裕~暴富级。</strong>身强担财+食伤生财有源，上等富命。大运走财运时财富爆发。';}
+    else if(strength==='身强'&&caixing>=1){wealth='<strong style="color:var(--accent)">小康~富裕。</strong>有财且能担，收入稳定上升。';}
+    else if(strength==='身弱'&&caixing>=2){wealth='<strong style="color:var(--fire)">财多身弱(富屋贫人)。</strong>机会多但抓不住，易财来财去。必须走印比运才能得财。忌投机借贷合伙。';}
+    else if(bijie>=3){wealth='<strong style="color:var(--fire)">比劫重重夺财。</strong>赚钱易被分走，不宜合伙担保。需官星制比或食伤通关。';}
+    else{wealth='<strong style="color:var(--accent2)">小康安稳。</strong>财星力量中等，衣食无忧。稳定工作+理性理财。';}
+    if(caikuChong) wealth+='<br><strong style="color:var(--accent)">财库逢冲(开库)：</strong>有暴富机会，辰戌丑未逢冲之年财库打开，把握时机。';
+    if(sikuCount>=2) wealth+='<br>命带'+sikuCount+'座财库，有储蓄能力，中年后财富渐丰。';
+    if(hasKongwangYin&&caixing>=1) wealth+='<br><strong style="color:var(--fire)">财星空亡：</strong>财来财去守不住，需强制储蓄/固定资产。';
+    html+='<div style="margin-bottom:12px;padding:12px;background:rgba(184,134,11,.08);border-radius:8px"><strong style="color:var(--earth)">【财富等级判定】</strong><br>'+wealth+'</div>';
+
+    // 房地产（彻底细分，6个等级+具体年份）
+    var house='';
+    var houseScore=tuCount*2+yinxing*1.5+sikuCount*2+(hasYima&&caixing>=1?3:0)-(hasKongwangYin?2:0)-(bijie>=3?2:0)+(caikuChong?2:0);
+    var propertyYears=dayun.filter(function(d){return stemEl[d.stem]==='土'||stemEl[d.stem]===shengWo[dmEl];}).map(function(d){return d.age;});
+    if(houseScore>=12){house='<strong style="color:#b8860b">房产大亨级(5套以上)。</strong>土旺印旺+多财库，一生房产极多。'+(hasYima&&caixing>=1?'驿马+偏财组合，<strong>适合房产投资</strong>，低买高卖获利丰厚。':'以自住+收租为主。')+'购房最佳大运：'+(propertyYears.length?propertyYears.slice(0,2).join('、'):'走印/土运时')+'。方位首选'+(usefulEl==='木'?'东':usefulEl==='火'?'南':usefulEl==='土'?'本地':usefulEl==='金'?'西':'北')+'方。';}
+    else if(houseScore>=9){house='<strong style="color:var(--accent)">多套房产(3-5套)。</strong>土印皆旺，房产运佳。'+(caikuChong?'财库逢冲，可通过房产变现获利。':'稳步积累。')+'走印/土运时购房。';}
+    else if(houseScore>=6){house='<strong style="color:var(--accent2)">2-3套房产。</strong>有一定房产运，可自住+1套投资。'+(hasYima&&caixing>=1?'有偏财驿马，可适度投资房产。':'以自住为主。')+'把握印星流年购房。';}
+    else if(houseScore>=3){house='<strong>1-2套(刚需为主)。</strong>房产运一般，先解决自住。'+(bijie>=3?'比劫旺，房产易有纠纷/被分，产权需清晰。':'')+(hasKongwangYin?'有空亡，购房易有波折，需仔细审查合同。':'')+'不宜投机。';}
+    else if(houseScore>=0){house='<strong style="color:var(--muted)">1套刚需或长期租房。</strong>土印皆弱，房产运差，购房压力大。建议租房或小户型，待走印/土大运时再考虑。'+(strength==='身弱'?'身弱不担重资产，切忌贷款炒房。':'');}
+    else{house='<strong style="color:var(--fire)">房产运差，易因房破财。</strong>土弱+空亡+比劫夺财，购房易被套或纠纷。建议长期租房，不要把财富压在房产上。';}
+    house+='<br><strong>购房时机：</strong>流年地支为辰戌丑未(土)或印星(生'+dmEl+'之'+shengWo[dmEl]+')之年最易购房。'+(caikuChong?'财库逢冲之年(辰戌冲/丑未冲)有房产变现机会。':'');
+    html+='<div style="margin-bottom:12px;padding:12px;background:rgba(180,83,9,.08);border-radius:8px"><strong style="color:var(--accent)">【房地产·数量·投资自住·购房时机】</strong><br>(房产指数：'+houseScore.toFixed(1)+'分) '+house+'</div>';
+
+    // 健康
+    var healthMap={木:'肝胆、筋骨、眼睛——少熬夜少饮酒',火:'心、小肠、血脉——静心防心悸',土:'脾胃、肌肉——规律饮食少生冷',金:'肺、大肠、皮肤——深呼吸防呼吸道',水:'肾、膀胱、骨骼——保精防腰酸耳鸣'};
+    html+='<div style="margin-bottom:12px;padding:12px;background:rgba(192,57,43,.05);border-radius:8px"><strong style="color:var(--fire)">【健康】</strong><br>忌神<strong style="color:'+elColor[tabooEl]+'">'+tabooEl+'</strong>最需保养：'+healthMap[tabooEl]+'。'+(ss.some(function(s){return s.name==='羊刃';})?'命带羊刃，逢冲之年注意外伤手术血光。':'')+(dzRel.some(function(r){return r.type==='三刑';})?'命带三刑，注意慢性病和官非。':'')+'<br>五行最弱：'+Object.keys(elCount).reduce(function(a,b){return elCount[a]<=elCount[b]?a:b;})+'，对应脏腑也需保养。</div>';
+
+    // 家庭
+    var spouseGod=gender==='male'?'正财':'正官';
+    var spouseCount=godCount[spouseGod]||0;
+    var family='<strong>配偶宫(日支'+db+')：</strong>藏'+branchGods[2].map(function(x){return x.stem+'('+x.god+')';}).join('、')+'。';
+    if(spouseCount>=2) family+=(gender==='male'?'财星混杂，感情易有纠葛，宜晚婚。':'官杀混杂，感情选择多，易有二婚，宜晚婚。');
+    else if(spouseCount===0) family+='配偶星不透，婚姻缘晚，宜晚婚。';
+    else family+='配偶星透出，婚姻缘分正常。';
+    if(dzRel.some(function(r){return r.text.indexOf(db)>=0&&(r.type==='六冲'||r.type==='三刑');})) family+='<strong style="color:var(--fire)">配偶宫逢冲刑</strong>，婚姻易波动，需用心经营。';
+    if(ss.some(function(s){return s.name.indexOf('桃花')>=0;})) family+='命带桃花，异性缘佳。';
+    if(ss.some(function(s){return s.name==='孤辰'||s.name==='寡宿'||s.name==='孤鸾煞'||s.name==='阴差阳错';})) family+='带孤辰寡宿/孤鸾/阴差阳错，感情易孤独错过，宜包容。';
+    family+='<br><strong>子女宫(时柱'+hs+hb+')：</strong>'+(shishang>=1?'食伤透出，子女聪慧有出息。':'子女星不显，缘分需多经营。')+(ss.some(function(s){return s.name.indexOf('空亡')>=0&&s.pillar.indexOf('时')>=0;})?'时柱空亡，子女可能不在身边。':'');
+    family+='<br><strong>父母：</strong>年柱'+ys+yb+(ss.some(function(s){return s.name.indexOf('空亡')>=0&&s.pillar.indexOf('年')>=0;})?'逢空亡，与父母缘薄或祖业难靠。':'')+'。';
+    html+='<div style="margin-bottom:12px;padding:12px;background:rgba(45,107,138,.06);border-radius:8px"><strong style="color:var(--accent2)">【家庭·婚姻·子女·父母】</strong><br>'+family+'</div>';
+
+    // 学业学历
+    var edu='';
+    if(yinxing>=2||ss.some(function(s){return s.name==='文昌贵人';})){edu='<strong style="color:var(--wood)">学业运佳。</strong>印星旺/带文昌，聪明好学，学历较高（本科以上）。适合继续深造。';}
+    else if(shishang>=2){edu='<strong>聪明但偏科。</strong>食伤旺，思维活跃但可能不喜应试教育，适合技术/艺术方向。';}
+    else{edu='学业一般，需努力。适合学一门实用技术。';}
+    html+='<div style="margin-bottom:12px;padding:12px;background:rgba(45,122,62,.06);border-radius:8px"><strong style="color:var(--wood)">【学业·学历·技能方向】</strong><br>'+edu+'</div>';
+
+    html+='</div></div></div>';
+    html+='<div style="background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;line-height:1.8;margin-top:12px"><strong style="color:var(--accent)">学习提示：</strong>对照前面7个板块理论，理解每步推导。换不同八字反复练习，观察各指数如何变化。</div>';
+
+    out.innerHTML=html;
+    out.querySelectorAll('.acc-header').forEach(function(h){
+      h.addEventListener('click',function(){h.parentElement.classList.toggle('open');});
+    });
+    out.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+})();
+</script>
+</body>
+</html>
